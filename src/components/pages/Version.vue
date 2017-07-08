@@ -56,13 +56,15 @@
                     features:[
                         "Ajout d'un bouton d'option",
                         'Reset des données sauvegardées',
-                        'Import/Export de la bibliothèque en format json',
+                        'Import/Export de la bibliothèque en format json et csv',
                         'Mise en place du routeur',
                         'Création de la page : "Notes de version"'
                     ],
                     bugs:[
                         'Recentrage du titre',
-                        'Traduction des termes anglais'
+                        'Traduction des termes anglais',
+                        'Changement du nom',
+                        "Ajout d'un favicon"
                     ]
                 },
                 {

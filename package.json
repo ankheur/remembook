@@ -21,10 +21,11 @@
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
+    "papaparse": "^4.3.3",
     "vue-loader": "^13.0.0",
     "vue-template-compiler": "^2.3.4",
-    "vuetify": "^0.13.0",
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.4.5"
+    "vuetify": "^0.13.1",
+    "webpack": "^3.1.0",
+    "webpack-dev-server": "^2.5.1"
   }
 }
