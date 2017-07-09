@@ -15,14 +15,14 @@
       <v-container>
         <h3 class='text-xs-center'>Notes de version</h3>
         <v-layout row wrap>
-            <v-flex xs12>
+            <v-flex xs9>
                 <v-card v-for='version in versions' :key="version.id">
                     <v-card-title>
                         <h4>{{version.title}}</h4>
                     </v-card-title>
                     <v-card-text>
                         <v-list v-if='version.features' >
-                           <v-list-tile-title>Fonctionalités</v-list-tile-title>
+                           <v-list-tile-title><h5>Fonctionalités</h5></v-list-tile-title>
                            <v-list-tile v-for="feature in version.features" :key="feature.id">
                                 <v-list-tile-content>
                                     {{feature}}
@@ -30,11 +30,23 @@
                            </v-list-tile>
                         </v-list>
                         <v-list v-if='version.bugs'>
-                            <v-list-tile-title>Corrections</v-list-tile-title>
+                            <v-list-tile-title><h5>Corrections</h5></v-list-tile-title>
                             <v-list-tile v-for="bug in version.bugs" :key="bug.id">
                                 <v-list-tile-content>
                                     {{bug}}
                                 </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-card-text>
+                </v-card>
+            </v-flex>
+            <v-flex xs3>
+                <v-card>
+                    <v-card-title><h4>Roadmap</h4></v-card-title>
+                    <v-card-text>
+                        <v-list>
+                            <v-list-tile v-for="item in roadmap" :key="item.id">
+                            <v-list-tile-content>{{item}}</v-list-tile-content>
                             </v-list-tile>
                         </v-list>
                     </v-card-text>
@@ -58,9 +70,11 @@
                         'Reset des données sauvegardées',
                         'Import/Export de la bibliothèque en format json et csv',
                         'Mise en place du routeur',
-                        'Création de la page : "Notes de version"'
+                        'Création de la page : "Notes de version"',
+                        'Roadmap'
                     ],
                     bugs:[
+                        "Suppression des entrées vides lors d'import de fichiers",
                         'Recentrage du titre',
                         'Traduction des termes anglais',
                         'Changement du nom',
@@ -78,7 +92,16 @@
                         'Rechercher une entrée',
                         'Notification de mise à jour de la bibliothèque'
                     ]
-                }]
+                }],
+                roadmap: [
+                    'Edition des entrées',
+                    'Système de notation',
+                    'Responsive design',
+                    'API de recherche et autocomplétion',
+                    'Ajout du champ "Prêté"',
+                    'Statistiques'
+
+                ]
             }
         },
         methods:{

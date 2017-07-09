@@ -28,10 +28,18 @@
             hide-details
             v-model="props.selected"></v-checkbox>
         </td>
-        <td class="text-xs-center">{{ props.item.titre }}</td>
-        <td class="text-xs-right">{{ props.item.auteur }}</td>
-        <td class="text-xs-right">{{ props.item.edition }}</td>
-        <td class="text-xs-right">{{ props.item.annee }}</td>
+        <td class="text-xs-center">
+            {{ props.item.titre }}
+        </td>
+        <td class="text-xs-right">
+            {{ props.item.auteur }}
+        </td>
+        <td class="text-xs-right">
+            {{ props.item.edition }}
+        </td>
+        <td class="text-xs-right">
+            {{ props.item.annee }}
+        </td>
         <td class="text-xs-right">
             <v-icon light v-if='props.item.lu'>check</v-icon>
             <v-icon light v-else>clear</v-icon>
@@ -57,12 +65,11 @@
                 {
                     text: 'Titre',
                     align: 'center',
-                    sortable: true,
                     value: 'titre'
                 },
                 { text: 'Auteur/trice', value: 'auteur' },
                 { text: 'Edition', value: 'edition' },
-                { text: 'Année', value: 'annee' },
+                { text: 'Année', value: 'annee'},
                 { text: 'Lu', value: 'lu' },
                 { text: 'Note', value: 'note' }
                 ]
@@ -71,6 +78,9 @@
         methods:{
             selection(){
                 this.$emit('selectionEvent', this.selected)
+            },
+            edit(){
+                Vue.ls.set('books', this.books)
             }
         },
         created(){

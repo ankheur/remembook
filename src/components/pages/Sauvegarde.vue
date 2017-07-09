@@ -133,8 +133,6 @@
                 //Dès que le fichier est fini de lire, on stocke le résultat, on le parse et on l'intègre au Local Storage
                 reader.addEventListener('load', ()=>{
                     let sauvegarde = reader.result
-                    console.log(sauvegarde)
-                    console.log(JSON.parse(sauvegarde))
                     localStorage.setItem("books",JSON.parse(sauvegarde))
                     this.snackbar = true
                     fileInput.value = ''
@@ -152,7 +150,7 @@
                 reader.addEventListener('load', ()=>{
                     let resultat = reader.result
                     let intermed = Papa.parse(resultat, {header: true, dynamicTyping:true})
-                    intermed = intermed.data
+                    intermed = cleanImport(intermed.data)
                     let sauvegarde = {
                         value: intermed,
                         expire: null
@@ -167,5 +165,13 @@
                 reader.readAsText(fileInput.files[0])
             }           
         }
+    }
+
+    function cleanImport(data){
+        let books = data.filter((book)=>{
+            return book.titre != ''
+        })
+        
+        return books
     }
 </script>

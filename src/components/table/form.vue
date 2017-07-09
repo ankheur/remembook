@@ -58,8 +58,8 @@
         data(){
             return{
                 bookTitle:'',
-                bookAuthor: '',
-                bookEditor: '',
+                bookAuthor: '-',
+                bookEditor: '-',
                 bookYear: null,
                 bookRead: false
             }
