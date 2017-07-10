@@ -1,55 +1,110 @@
 <template>
-    <v-flex xs1>
-        <v-fab-transition>
-            <v-btn :class="[addBtn.class]"
-                :key="addBtn.icon"
+    <v-fab-transition>
+        <v-flex xs1 v-if='addBtn'>
+            <v-fab-transition>
+                <v-btn class="indigo"
+                    key="add"
+                    fab dark
+                    bottom
+                    right
+                    @click.native='openForm'
+                    v-if='!displayForm'>
+                <v-icon>add</v-icon>
+                </v-btn>
+                <v-btn class="red"
+                    key="close"
+                    fab dark
+                    bottom
+                    right
+                    @click.native='closeForm'
+                    v-if='displayForm'>
+                <v-icon>close</v-icon>
+                </v-btn>
+            </v-fab-transition>    
+        </v-flex>
+        <v-flex xs1 v-if='editBtn'>
+            <v-btn class="green"
                 fab dark
                 bottom
                 right
-                @click.native='add'
-                v-if='noSelection'>
-            <v-icon>{{ addBtn.icon }}</v-icon>
-            </v-btn>
-            <!--<v-btn class="green"
-                fab dark
-                bottom
-                right
-                @click.native='editEntry'
-                v-if='!noSelection'>
+                @click.native='editClicked'>
             <v-icon>edit</v-icon>
-            </v-btn>-->
+            </v-btn>
             <v-btn class="red"
                 fab dark
                 bottom
                 right
-                @click.native='deleteEntry'
-                v-if='!noSelection'>
+                @click.native='deleteClicked'>
             <v-icon>delete</v-icon>
             </v-btn>
-        </v-fab-transition>
         </v-flex>
+    </v-fab-transition>
 </template>
 
 <script>
     import {eventBus} from '../../main'
 
     export default {
-        props:['addPressed', 'noSelection'],
-        computed:{
-            addBtn(){
-            return this.addPressed ? {'class':'red', icon:'close'} : {'class':'indigo', icon:'add'}
+        props:['displayForm'],
+        data(){
+            return{
+                addBtn: true,
+                editBtn: false,
+
+                selectionNumber: 0
             }
         },
         methods:{
-            add(){
-                this.$emit('addClicked')
+            openForm(){
+                eventBus.$emit('resetForm')
+                this.$emit('openForm')
             },
-            // editEntry(){
-            //     eventBus.$emit('edit')
-            // },
-            deleteEntry(){
+            closeForm(){
+                this.$emit('closeForm')
+
+                if(this.selectionNumber > 0){
+                    this.addBtn = false
+                    this.editBtn = true
+                }
+            },
+            
+            editClicked(){
+                //On demande à table d'afficher le Form
+                this.$emit('openForm')
+
+                //On dit à container que le bouton editer à été cliqué
+                eventBus.$emit('edit')
+
+                this.editBtn = false
+                this.addBtn = true
+            },
+            deleteClicked(){
+                //Prévient Container qu'on a cliqué sur Supprimer
                 eventBus.$emit('delete')
+
+                //On remet les boutons d'ajouts car plus de sélection
+                this.editBtn = false
+                this.addBtn = true
             }
+        },
+        created(){
+            eventBus.$on('selectionToggle', ($event)=>{
+                this.selectionNumber = $event.length
+                //Si des entrées sont sélectionnées, on affiche les boutons edit et delete
+                if(this.displayForm){
+                    this.$emit('closeForm')
+                }
+
+                if($event.length > 0){
+                    this.addBtn = false
+                    this.editBtn = true
+
+                //Sinon, on les cache        
+                }else{
+                    this.addBtn = true
+                    this.editBtn = false
+                }
+            })
         }
     }
 </script>

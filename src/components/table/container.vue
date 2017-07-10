@@ -18,7 +18,7 @@
       class="elevation-0"
       v-model="selected"
       selected-key="titre"
-      select-all @input='selection'
+      select-all @input='selectionAction'
       no-data-text="Aucune entrée trouvée"> <!-- hide-actions permet de cacher ou non la pagination-->
     
     <template slot="items" scope="props">
@@ -76,24 +76,28 @@
             }
         },
         methods:{
-            selection(){
-                this.$emit('selectionEvent', this.selected)
-            },
-            edit(){
-                Vue.ls.set('books', this.books)
+            selectionAction(){
+                //On notifie les boutons qu'il y a changement dans la selection
+                eventBus.$emit('selectionToggle', this.selected)
             }
         },
         created(){
-            // eventBus.$on('edit', ()=>{
-            //     let idx = this.books.findIndex((book)=>{
-            //         return book.titre === this.selected[0].titre
-            //     })
-            //     if(idx != -1){
-            //         eventBus.$emit('editSelection', this.selected[0])
-            //         console.log(this.selected[0])
-            //         this.$emit('editForm')
-            //     }
-            // })
+            //Quand on a select une rangée et qu'on clic sur éditer
+            eventBus.$on('edit', ()=>{
+                let idx = this.books.findIndex((book)=>{
+                    return book.titre === this.selected[0].titre
+                })
+                // //Si on trouve la ref
+                if(idx != -1){
+                    //On envoie un event pour Form avec les données de l'ouvrage sélectionné
+                    eventBus.$emit('editForm', {el:this.selected[0], index: idx})
+                    
+                }
+            })
+
+            eventBus.$on('editDone', ()=>{
+                this.selectionAction()
+            })
 
             //Lorsqu'on veut supprimer une ligne
             eventBus.$on('delete', ()=>{
@@ -109,7 +113,7 @@
                         Vue.ls.set('books', this.books)
                     }
                 })
-                this.$emit('endSelection')
+                this.selected= []
             })
         }
     }

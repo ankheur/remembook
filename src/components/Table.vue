@@ -24,11 +24,12 @@
       <v-container>
         <v-layout row wrap justify-center>
           <v-flex xs11>
-            <app-form v-if='addPressed' @addEvent='addBook($event)'></app-form>
-            <app-container :books='books' @selectionEvent='modifySelection' @endSelection='resetSelection' @editForm='addPressed=true'></app-container>
+            <keep-alive>
+              <app-form v-show='displayForm' @addEvent='addBook($event)' @editEvent='editBook($event)' :displayForm='displayForm'></app-form>
+            </keep-alive>
+            <app-container :books='books'></app-container>
           </v-flex>
-          <app-buttons :addPressed='addPressed' :noSelection='noSelection'
-          @addClicked='addPressed = !addPressed'></app-buttons>
+          <app-buttons :displayForm='displayForm' @openForm='displayForm = true' @closeForm='displayForm = false'></app-buttons>
         </v-layout>
         <v-dialog v-model="resetConfirm">
           <v-card>
@@ -61,12 +62,12 @@ import Vue from 'vue'
 import Container from './table/container.vue'
 import Form from './table/form.vue'
 import Buttons from './table/buttons.vue'
+import {eventBus} from '../main'
 
 export default {
   data () {
     return {
-      addPressed: false,
-      noSelection: true,
+      displayForm: false,
       books: [],
       resetConfirm: false,
       snackbar: false,
@@ -97,21 +98,18 @@ export default {
   methods:{
     addBook(e){
       this.books.push(e)
-      this.addPressed = false
+      this.displayForm = false
       Vue.ls.set('books', this.books)
       this.snackbar = true
     },
-    modifySelection(e){
-      if(e.length > 0){
-        this.noSelection = false
-        this.addPressed = false        
-      }else{
-        this.noSelection = true
-      }
+
+    editBook(e){
+      this.books.splice(e.index, 1, e.book)
+      this.displayForm = false
+      Vue.ls.set('books', this.books)
+      this.snackbar = true
     },
-    resetSelection(){
-      this.noSelection = true
-    },
+    
     resetSave(){
       Vue.ls.remove('books')
       this.resetConfirm = false

@@ -42,7 +42,7 @@
             </v-flex>
             <v-flex xs3 >
                 <v-layout row justify-center>
-                    <v-btn @click.native='add' :disabled="bookTitle === ''">Ajouter</v-btn>
+                    <v-btn @click.native='formSubmit' :disabled="bookTitle === ''">{{submitTxt}}</v-btn>
                 </v-layout>
             </v-flex>
         </v-layout>
@@ -58,38 +58,64 @@
         data(){
             return{
                 bookTitle:'',
-                bookAuthor: '-',
-                bookEditor: '-',
+                bookAuthor: '',
+                bookEditor: '',
                 bookYear: null,
-                bookRead: false
+                bookRead: false,
+                submitTxt: 'Ajouter',
+
+                idxSelected: 0
             }
         },
         methods:{
-            add(){
-                //S'il y a au moins un titre
-                if(this.bookTitle !== ''){
-
-                    //On entre toutes les info dans un objet
-                    let newBook = {
+            formSubmit(){
+                let book = {
                         titre: this.bookTitle,
                         auteur: this.bookAuthor,
                         edition: this.bookEditor,
                         annee: this.bookYear,
                         lu: this.bookRead
                     }
-                    //On notifie Table.vue de l'ajout
-                    this.$emit('addEvent', newBook)
+
+                if(this.bookTitle !== ''){
+                    if(this.submitTxt === 'Ajouter'){
+                        //On notifie Table.vue de l'ajout
+                        this.$emit('addEvent', book)
+                    }
+
+                    else if (this.submitTxt === 'Editer'){
+                        this.$emit('editEvent',{book, index: this.idxSelected})
+                        eventBus.$emit('editDone')
+                    }
+
+                    //On notifie Boutons que le formulaire s'est fermé
+                    eventBus.$emit('formClosed')
                 }
+                
             }
         },
         created(){
-            // eventBus.$on('editSelection', (el)=>{
-            //     this.bookTitle = el.titre
-            //     this.bookAuthor = el.auteur
-            //     this.bookEditor= el.edition
-            //     this.bookYear = el.annee
-            //     this.bookRead = el.lu
-            // })
+
+            eventBus.$on('editForm', ($event)=>{
+                this.submitTxt = 'Editer'
+                this.bookTitle = $event.el.titre
+                this.bookAuthor = $event.el.auteur
+                this.bookEditor= $event.el.edition
+                this.bookYear = $event.el.annee
+                this.bookRead = $event.el.lu
+
+                this.idxSelected = $event.index
+
+            })
+
+            eventBus.$on('resetForm', ()=>{
+                this.submitTxt = 'Ajouter'
+                this.bookTitle = ''
+                this.bookAuthor = ''
+                this.bookEditor = ''
+                this.bookYear = null
+                this.bookRead = false
+            })
         }
     }
 </script>
