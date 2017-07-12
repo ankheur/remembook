@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div id='mainWrapper'>
     <header>
       <v-container>
         <v-layout row wrap justify-center>
-          <h2>Bibliotheque</h2>
+          <h1>Remembook</h1>
           <v-spacer></v-spacer>
           <v-menu
           transition="v-slide-y-transition"
@@ -30,7 +30,18 @@
             <app-container :books='books'></app-container>
           </v-flex>
           <app-buttons :displayForm='displayForm' @openForm='displayForm = true' @closeForm='displayForm = false'></app-buttons>
+
+          <v-fab-transition>
+          <v-btn dark fab
+              bottom right fixed
+              class="green"
+              v-if='scrollBtnActivated'
+              @click.native='moveTop'>
+              <v-icon>keyboard_arrow_up</v-icon>
+          </v-btn>
+          </v-fab-transition>
         </v-layout>
+    
         <v-dialog v-model="resetConfirm">
           <v-card>
             <v-card-title class="headline">Supprimer les données du site ?</v-card-title>
@@ -42,8 +53,15 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
+
       </v-container>
     </main>
+
+    <!-- <v-footer>
+      <p class='text-xs-center'>2017 Remembook créé par <a href="https://github.com/ThunderAnkh">Ankh</a></p>
+    </v-footer> -->
+
+
     <v-snackbar
       bottom
       right
@@ -52,7 +70,6 @@
       {{ snackText }}
       <v-btn flat class="pink--text" @click.native="snackbar = false">Fermer</v-btn>
     </v-snackbar>
-    
   </div>    
 </template>
 
@@ -92,8 +109,12 @@ export default {
               this.$router.push('/version')
           }
         }
-      ] 
+      ],
+      scrollBtnActivated: false
     }
+  },
+  computed:{
+    
   },
   methods:{
     addBook(e){
@@ -114,7 +135,15 @@ export default {
       Vue.ls.remove('books')
       this.resetConfirm = false
       location.reload();
-    }
+    },
+
+    moveTop(){
+      document.body.scrollTop = 0
+    },
+
+    scrolled(){
+      this.scrollBtnActivated = window.scrollY > 300;
+    } 
   },
   components:{
     'app-container': Container,
@@ -122,39 +151,39 @@ export default {
     'app-buttons': Buttons
   },
   mounted(){
+    //On écoute l'event du scroll
+    window.addEventListener('scroll', this.scrolled);
+
     //Dès le démarrage de l'application, on récupère les données du LocalStorage
     if(Vue.ls.get('books')){
       this.books = Vue.ls.get('books')
     }
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.scrolled);
   }
 }
 </script>
 
 <style>
-/*#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+/* main{
+  min-height: 100%;
+  margin-bottom: -36px;
 }
+
+main:after{
+  content: "";
+  display: block;
+  height: 36px;
+} */
 
 h1, h2 {
   font-weight: normal;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+h1{
+  font-size: 50px;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}*/
 </style>

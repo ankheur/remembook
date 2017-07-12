@@ -69,8 +69,8 @@
                 },
                 { text: 'Auteur/trice', value: 'auteur' },
                 { text: 'Edition', value: 'edition' },
-                { text: 'Année', value: 'annee'},
-                { text: 'Lu', value: 'lu' },
+                { text: 'Année', value: 'annee', sortable: false},
+                { text: 'Lu', value: 'lu', sortable: false },
                 { text: 'Note', value: 'note' }
                 ]
             }
@@ -101,6 +101,9 @@
 
             //Lorsqu'on veut supprimer une ligne
             eventBus.$on('delete', ()=>{
+
+                //==> IDEE : popup de confirmation si plusieurs éléments sélectionnés et qu'on clic sur delete ??
+
                 //On récupère la ligne des éléments sélectionnés et pour chaque:
                 this.selected.forEach((sBook)=>{
                     //On cherche son index dans le tableau principal

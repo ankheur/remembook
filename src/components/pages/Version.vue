@@ -64,17 +64,27 @@
             return{
                 versions: [
                 {
+                    title: 'V0.3 - Changing ways',
+                    features: [
+                        "Ajout de l'édition",
+                        'Roadmap',
+                        "Bouton retour en haut"
+                    ],
+                    bugs:[
+                        "Suppression des lignes vides lors d'import csv",
+                        "Refonte de la logique interne au niveau des composants (vuejs)"
+                    ]
+                },
+                {
                     title: 'V0.2 - Safe Routes',
                     features:[
                         "Ajout d'un bouton d'option",
                         'Reset des données sauvegardées',
                         'Import/Export de la bibliothèque en format json et csv',
                         'Mise en place du routeur',
-                        'Création de la page : "Notes de version"',
-                        'Roadmap'
+                        'Création de la page : "Notes de version"'
                     ],
                     bugs:[
-                        "Suppression des entrées vides lors d'import de fichiers",
                         'Recentrage du titre',
                         'Traduction des termes anglais',
                         'Changement du nom',
@@ -94,7 +104,6 @@
                     ]
                 }],
                 roadmap: [
-                    'Edition des entrées',
                     'Système de notation',
                     'Responsive design',
                     'API de recherche et autocomplétion',
