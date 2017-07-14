@@ -1,7 +1,12 @@
 <template>
   <v-app id="app">
     <router-view></router-view>
-  </v-app>    
+    <v-footer>
+      <p class='text-xs-center'>2017 Remembook. Créé par
+        <a href="https://github.com/ThunderAnkh">Ankh</a>
+      </p>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
@@ -11,30 +16,16 @@
 </script>
 
 <style>
-/*#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
+#mainWrapper {
+  min-height: 100vh;
+}
+
+#app {
+  /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  -moz-osx-font-smoothing: grayscale; */
+
 }
 
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}*/
 </style>

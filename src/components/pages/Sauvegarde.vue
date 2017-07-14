@@ -3,7 +3,7 @@
     <header>
       <v-container>
         <v-layout row wrap justify-center>
-          <h2>Bibliotheque</h2>
+          <h1>Remembook</h1>
           <v-spacer></v-spacer>
           <v-btn primary dark class="grey" @click.native='redirectHome'>
             Retour

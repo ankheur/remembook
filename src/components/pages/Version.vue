@@ -3,7 +3,7 @@
     <header>
       <v-container>
         <v-layout row wrap justify-center>
-          <h2>Bibliotheque</h2>
+          <h1>Remembook</h1>
           <v-spacer></v-spacer>
           <v-btn primary dark class="grey" @click.native='redirectHome'>
             Retour
@@ -64,6 +64,17 @@
             return{
                 versions: [
                 {
+                    title: 'V0.4 - Judgment road',
+                    features: [
+                        "Système de notation",
+                        "Ajout d'un footer"
+                    ],
+                    bugs:[
+                        "L'édition d'un élément reset la sélection",
+                        "Correction du titre sur les pages version et sauvegarde"
+                    ]
+                },
+                {
                     title: 'V0.3 - Changing ways',
                     features: [
                         "Ajout de l'édition",
@@ -104,11 +115,10 @@
                     ]
                 }],
                 roadmap: [
-                    'Système de notation',
                     'Responsive design',
-                    'API de recherche et autocomplétion',
                     'Ajout du champ "Prêté"',
-                    'Statistiques'
+                    'Statistiques',
+                    'App Android/iOS/PC'
 
                 ]
             }

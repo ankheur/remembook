@@ -9,7 +9,7 @@
           transition="v-slide-y-transition"
           bottom>
             <v-btn primary dark slot="activator" class="grey">
-              Options
+              Menu
             </v-btn>
             <v-list>
               <v-list-tile v-for="item in menuItems" :key="item">
@@ -44,7 +44,7 @@
     
         <v-dialog v-model="resetConfirm">
           <v-card>
-            <v-card-title class="headline">Supprimer les données du site ?</v-card-title>
+            <v-card-title class="headline text-xs-center">Supprimer les données du site ?</v-card-title>
             <v-card-text>Vos données seront effacées de votre navigateur. Vous perdrez votre bibliothèque</v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -56,11 +56,6 @@
 
       </v-container>
     </main>
-
-    <!-- <v-footer>
-      <p class='text-xs-center'>2017 Remembook créé par <a href="https://github.com/ThunderAnkh">Ankh</a></p>
-    </v-footer> -->
-
 
     <v-snackbar
       bottom
@@ -166,18 +161,6 @@ export default {
 </script>
 
 <style>
-
-/* main{
-  min-height: 100%;
-  margin-bottom: -36px;
-}
-
-main:after{
-  content: "";
-  display: block;
-  height: 36px;
-} */
-
 h1, h2 {
   font-weight: normal;
 }

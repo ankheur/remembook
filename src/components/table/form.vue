@@ -53,6 +53,15 @@
                 </v-layout>
             </v-flex>
         </v-layout>
+        <v-layout>
+            <v-flex xs4 class='review__note'>
+                Note
+                <template v-for='num in [5,4,3,2,1]'>
+                    <input type="radio" :id='num' name="rating" :value='num' v-model='bookNote'>
+                    <label :for='num'> {{num}} Stars</label>
+                </template>
+            </v-flex>
+        </v-layout>
       </v-container>
     </v-card-text>
   </v-card>
@@ -70,6 +79,7 @@
                 bookEditor: '',
                 bookYear: null,
                 bookRead: false,
+                bookNote: null,
                 submitTxt: 'Ajouter',
 
                 idxSelected: null,
@@ -84,7 +94,8 @@
                         auteur: this.bookAuthor,
                         edition: this.bookEditor,
                         annee: this.bookYear,
-                        lu: this.bookRead
+                        lu: this.bookRead,
+                        note: this.bookNote
                     }
 
                 if(this.bookTitle !== ''){
@@ -143,6 +154,7 @@
                 this.bookEditor= $event.el.edition
                 this.bookYear = $event.el.annee
                 this.bookRead = $event.el.lu
+                this.bookNote = $event.el.note
 
                 this.idxSelected = $event.index
 
@@ -155,6 +167,7 @@
                 this.bookEditor = ''
                 this.bookYear = null
                 this.bookRead = false
+                this.bookNote = null
             })
         },
         filters: {
@@ -171,3 +184,43 @@
     }
 </script>
 
+<style>
+    .review__note {
+    display: -ms-flexbox;
+    display: flex;
+    }
+    .review__note input {
+      display: none; }
+      .review__note input:checked ~ label {
+        color: #FFC40E; }
+      .review__note input + label {
+        font-size: 0;
+        }
+        .review__note input + label:before {
+          content: '\2605';
+          font-size: 2rem; 
+        }
+        .review__note input + label[for="5"] {
+          -ms-flex-order: 5;
+              order: 5; 
+        }
+        .review__note input + label[for="4"] {
+          -ms-flex-order: 4;
+              order: 4; 
+        }
+        .review__note input + label[for="3"] {
+          -ms-flex-order: 3;
+              order: 3; 
+        }
+        .review__note input + label[for="2"] {
+          -ms-flex-order: 2;
+              order: 2; 
+        }
+        .review__note input + label[for="1"] {
+          -ms-flex-order: 1;
+              order: 1; 
+        }
+        .review__note input + label:hover, .review__note input + label:hover ~ label {
+          color: #ffdd74; 
+        }
+</style>

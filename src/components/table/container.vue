@@ -40,11 +40,15 @@
         <td class="text-xs-right">
             {{ props.item.annee }}
         </td>
-        <td class="text-xs-right">
+        <td class="text-xs-center">
             <v-icon light v-if='props.item.lu'>check</v-icon>
             <v-icon light v-else>clear</v-icon>
         </td>
-        <td class="text-xs-right">{{ props.item.note }}</td>
+        <td class="text-xs-right note">
+            <template v-for='star in props.item.note'>
+                  <span></span>
+            </template>
+        </td>
     </template>
 
   </v-data-table>
@@ -70,8 +74,8 @@
                 { text: 'Auteur/trice', value: 'auteur' },
                 { text: 'Edition', value: 'edition' },
                 { text: 'Année', value: 'annee', sortable: false},
-                { text: 'Lu', value: 'lu', sortable: false },
-                { text: 'Note', value: 'note' }
+                { text: 'Lu', align: 'center', value: 'lu', sortable: false },
+                { text: 'Note', align: 'center', value: 'note' }
                 ]
             }
         },
@@ -125,8 +129,21 @@
     }
 </script>
 
-<style scoped>
-    td{
-        cursor: pointer;
+<style>
+    .note{
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+    .note span:before{ 
+        content: '\2605';
+        font-size: 1rem;
+        text-align: right;
+    }
+
+    .card__title{
+        padding-left: 0px;
+    }
+
 </style>
