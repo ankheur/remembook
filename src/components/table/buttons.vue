@@ -51,7 +51,7 @@
                 addBtn: true,
                 editBtn: false,
 
-                selectionNumber: 0
+                selection: false
             }
         },
         methods:{
@@ -61,8 +61,9 @@
             },
             closeForm(){
                 this.$emit('closeForm')
+                eventBus.$emit('endSuggestion')
 
-                if(this.selectionNumber > 0){
+                if(this.selection){
                     this.addBtn = false
                     this.editBtn = true
                 }
@@ -95,7 +96,7 @@
                     this.$emit('closeForm')
                 }
 
-                if($event.length > 0){
+                if($event){
                     this.addBtn = false
                     this.editBtn = true
 

@@ -11,6 +11,13 @@
                     id="bookTitle"
                     v-model='bookTitle'></v-text-field>
                 </v-layout>
+                <!-- <v-card v-if='suggestion'>
+                    <v-list>
+                        <v-list-tile v-for="item in suggestionResponse" :key="item" @click.native='populateInfo(item)'>
+                            {{item.volumeInfo.title|trimTitle}} - {{item.volumeInfo.authors}}
+                        </v-list-tile>
+                    </v-list>
+                </v-card> -->
                 <v-layout row align-center>
                     <v-flex xs3>
                         <v-text-field
@@ -53,6 +60,7 @@
 
 <script>
     import {eventBus} from '../../main'
+    import axios from 'axios'
 
     export default {
         data(){
@@ -64,7 +72,9 @@
                 bookRead: false,
                 submitTxt: 'Ajouter',
 
-                idxSelected: 0
+                idxSelected: null,
+                suggestion: false,
+                suggestionResponse: {}
             }
         },
         methods:{
@@ -90,11 +100,41 @@
 
                     //On notifie Boutons que le formulaire s'est fermé
                     eventBus.$emit('formClosed')
-                }
-                
-            }
+                }  
+            },
+
+            /* FONCTION POUR L'API */
+            // autoComplete(){
+            //     const key = 'AIzaSyA2M20Jknh3udtqKeSdTzj597eGSLpgkGw'
+
+            //     if(this.bookTitle !== '' && this.submitTxt === 'Ajouter'){
+            //         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.bookTitle}+intitle&projection=lite&maxResults=3&country=FR&language=fr&key=${key}&fields=items/volumeInfo(title,authors,publishedDate)`)
+            //             .then(res =>{
+            //                 this.suggestionResponse = res.data.items
+            //             })
+            //         this.suggestion = true
+                    
+            //     }
+            //     else if(this.bookTitle === ''){
+            //         this.suggestion = false
+            //         this.suggestionResponse = {}
+            //     }
+            // },
+
+            // populateInfo(item){
+            //     this.bookTitle = item.volumeInfo.title
+            //     this.bookAuthor = item.volumeInfo.authors[0]
+            //     this.bookYear = item.volumeInfo.publishedDate || null
+            //     this.suggestionResponse = {}
+            //     this.suggestion = false
+            // }
         },
         created(){
+
+            eventBus.$on('endSuggestion', ()=>{
+                this.suggestionResponse = {}
+                this.suggestion = false
+            })
 
             eventBus.$on('editForm', ($event)=>{
                 this.submitTxt = 'Editer'
@@ -116,6 +156,17 @@
                 this.bookYear = null
                 this.bookRead = false
             })
+        },
+        filters: {
+            trimTitle(value){
+                let max = 45
+                if(value.length > max){
+                    return value.substring(0,max)+'...'
+                }
+                else{
+                    return value.substring(0,max)
+                }
+            }
         }
     }
 </script>

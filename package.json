@@ -17,6 +17,7 @@
     "vue-router": "^2.7.0"
   },
   "devDependencies": {
+    "axios": "^0.16.2",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",

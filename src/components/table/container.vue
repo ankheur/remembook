@@ -78,7 +78,8 @@
         methods:{
             selectionAction(){
                 //On notifie les boutons qu'il y a changement dans la selection
-                eventBus.$emit('selectionToggle', this.selected)
+                let selection = this.selected.length > 0 ? true:false
+                eventBus.$emit('selectionToggle', selection)
             }
         },
         created(){
@@ -96,7 +97,9 @@
             })
 
             eventBus.$on('editDone', ()=>{
+                this.selected = []
                 this.selectionAction()
+                
             })
 
             //Lorsqu'on veut supprimer une ligne
