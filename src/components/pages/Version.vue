@@ -67,11 +67,13 @@
                     title: 'V0.4 - Judgment road',
                     features: [
                         "Système de notation",
-                        "Ajout d'un footer"
+                        "Ajout d'un footer",
+                        "Ajout d'un avertissement de sauvegarde des données"
                     ],
                     bugs:[
                         "L'édition d'un élément reset la sélection",
-                        "Correction du titre sur les pages version et sauvegarde"
+                        "Correction du titre sur les pages version et sauvegarde",
+                        "Correction des messages d'avertissement pour l'import/export de données"
                     ]
                 },
                 {
