@@ -61,7 +61,7 @@
             },
             closeForm(){
                 this.$emit('closeForm')
-                eventBus.$emit('endSuggestion')
+                // eventBus.$emit('endSuggestion')
 
                 if(this.selection){
                     this.addBtn = false
@@ -89,8 +89,9 @@
             }
         },
         created(){
+            //Quand Container informe d'un changement dans la selection
             eventBus.$on('selectionToggle', ($event)=>{
-                this.selectionNumber = $event.length
+                this.selection = $event
                 //Si des entrées sont sélectionnées, on affiche les boutons edit et delete
                 if(this.displayForm){
                     this.$emit('closeForm')

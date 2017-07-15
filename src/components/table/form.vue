@@ -83,8 +83,8 @@
                 submitTxt: 'Ajouter',
 
                 idxSelected: null,
-                suggestion: false,
-                suggestionResponse: {}
+                // suggestion: false,
+                // suggestionResponse: {}
             }
         },
         methods:{
@@ -142,10 +142,10 @@
         },
         created(){
 
-            eventBus.$on('endSuggestion', ()=>{
-                this.suggestionResponse = {}
-                this.suggestion = false
-            })
+            // eventBus.$on('endSuggestion', ()=>{
+            //     this.suggestionResponse = {}
+            //     this.suggestion = false
+            // })
 
             eventBus.$on('editForm', ($event)=>{
                 this.submitTxt = 'Editer'
