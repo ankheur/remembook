@@ -20,6 +20,12 @@
         </v-layout>
       </v-container>
     </header>
+    <v-container>
+        <v-alert info dismissible v-model="avertissement">
+          Cette app est en cours de développement. Il est recommandé de sauvegarder vos données régulièrement
+          (menu -> exporter)
+        </v-alert>
+    </v-container>
     <main>
       <v-container>
         <v-layout row wrap justify-center>
@@ -85,6 +91,7 @@ export default {
       snackbar: false,
       snackText: 'Base de données mise à jour!',
       snackTimeout: 2000,
+      avertissement: true,
       menuItems: [
         {
           title: 'Importer/Exporter sauvegarde',

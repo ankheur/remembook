@@ -2,9 +2,9 @@
   <v-app id="app">
     <router-view></router-view>
     <v-footer>
-      <p class='text-xs-center'>2017 Remembook. Créé par
-        <a href="https://github.com/ThunderAnkh">Ankh</a>
-      </p>
+        <p>2017 Remembook. Créé par
+          <a href="https://github.com/ThunderAnkh">Ankh</a>
+        </p>
     </v-footer>
   </v-app>
 </template>
@@ -21,11 +21,15 @@
   min-height: 100vh;
 }
 
-#app {
-  /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
+.footer{
+  display: flex;
+  display: -ms-flexbox;
+  align-items: center;
+}
 
+.footer >:last-child{
+  margin-bottom: 0px;
+  margin-left: 50px;
 }
 
 </style>

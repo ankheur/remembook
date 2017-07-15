@@ -73,7 +73,7 @@
                 //On demande à table d'afficher le Form
                 this.$emit('openForm')
 
-                //On dit à container que le bouton editer à été cliqué
+                //On dit à container que le bouton editer a été cliqué
                 eventBus.$emit('edit')
 
                 this.editBtn = false
@@ -92,11 +92,13 @@
             //Quand Container informe d'un changement dans la selection
             eventBus.$on('selectionToggle', ($event)=>{
                 this.selection = $event
-                //Si des entrées sont sélectionnées, on affiche les boutons edit et delete
+
+                //S'il y a changement de sélection & que le form est ouvert, on le ferme
                 if(this.displayForm){
                     this.$emit('closeForm')
                 }
 
+                //Si des entrées sont sélectionnées, on affiche les boutons edit et delete
                 if($event){
                     this.addBtn = false
                     this.editBtn = true

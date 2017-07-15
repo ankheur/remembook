@@ -21,9 +21,9 @@
                         <h4>Exporter</h4>
                     </v-card-title>
                     <v-card-text>
-                        <v-alert warning value="true">
+                        <v-alert info value="true">
                             Attention, votre bibliothèque sera perdue si vous effacez les données de votre navigateur<br>
-                            Vous pouvez sauvegarder votre bibliothèque sur votre ordinateur en format json ou csv
+                            Vous pouvez sauvegarder votre bibliothèque sur votre ordinateur en format .json ou .csv (recommandé)
                         </v-alert>
                         <v-layout row wrap>
                             <v-flex xs2>
@@ -44,7 +44,7 @@
                         <v-alert error dismissible v-model="alert">
                             Ce type de fichier n'est pas autorisé. Veuillez uploader un fichier .json ou .csv
                         </v-alert>
-                        <p>Vous pouvez importer une bibliothèque en format json ou csv</p>
+                        <p>Vous pouvez importer une bibliothèque en format .json ou .csv</p>
                         <input id="file" type="file">
                         <v-btn @click.native='upload'>Uploader</v-btn>
                     </v-card-text>
@@ -70,7 +70,7 @@
     export default {
         data(){
             return {
-                dlRadio: 'json',
+                dlRadio: 'csv',
                 imgType: '', 
                 snackbar: false,
                 snackText: 'Upload terminé, base de données mise à jour',

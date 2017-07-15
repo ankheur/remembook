@@ -69,7 +69,6 @@
 
 <script>
     import {eventBus} from '../../main'
-    import axios from 'axios'
 
     export default {
         data(){
@@ -197,7 +196,7 @@
         font-size: 0;
         }
         .review__note input + label:before {
-          content: '\2605';
+          content: '☆';
           font-size: 2rem; 
         }
         .review__note input + label[for="5"] {
