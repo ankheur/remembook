@@ -76,9 +76,9 @@
                 bookTitle:'',
                 bookAuthor: '',
                 bookEditor: '',
-                bookYear: null,
+                bookYear: 0,
                 bookRead: false,
-                bookNote: null,
+                bookNote: 0,
                 submitTxt: 'Ajouter',
 
                 idxSelected: null,
@@ -94,7 +94,7 @@
                         edition: this.bookEditor,
                         annee: this.bookYear,
                         lu: this.bookRead,
-                        note: this.bookNote
+                        note: this.bookNote || 0
                     }
 
                 if(this.bookTitle !== ''){

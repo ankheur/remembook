@@ -13,43 +13,47 @@
     </header>
     <main>
       <v-container>
-        <h3 class='text-xs-center'>Notes de version</h3>
+        <h2 class='text-xs-center'>Notes de version</h2>
         <v-layout row wrap>
             <v-flex xs9>
                 <v-card v-for='version in versions' :key="version.id">
-                    <v-card-title>
-                        <h4>{{version.title}}</h4>
-                    </v-card-title>
-                    <v-card-text>
-                        <v-list v-if='version.features' >
-                           <v-list-tile-title><h5>Fonctionalités</h5></v-list-tile-title>
-                           <v-list-tile v-for="feature in version.features" :key="feature.id">
-                                <v-list-tile-content>
-                                    {{feature}}
-                                </v-list-tile-content>
-                           </v-list-tile>
-                        </v-list>
-                        <v-list v-if='version.bugs'>
-                            <v-list-tile-title><h5>Corrections</h5></v-list-tile-title>
-                            <v-list-tile v-for="bug in version.bugs" :key="bug.id">
-                                <v-list-tile-content>
-                                    {{bug}}
-                                </v-list-tile-content>
+                    <v-container>
+                        <v-card-title>
+                            <h3>{{version.title}}</h3>
+                        </v-card-title>
+                        <v-card-text>
+                            <v-list v-if='version.features' >
+                            <v-list-tile-title><h4>Fonctionalités</h4></v-list-tile-title>
+                            <v-list-tile v-for="feature in version.features" :key="feature.id">
+                                    <v-list-tile-content>
+                                        {{feature}}
+                                    </v-list-tile-content>
                             </v-list-tile>
-                        </v-list>
-                    </v-card-text>
+                            </v-list>
+                            <v-list v-if='version.bugs'>
+                                <v-list-tile-title><h4>Corrections</h4></v-list-tile-title>
+                                <v-list-tile v-for="bug in version.bugs" :key="bug.id">
+                                    <v-list-tile-content>
+                                        {{bug}}
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                            </v-list>
+                        </v-card-text>
+                    </v-container>
                 </v-card>
             </v-flex>
             <v-flex xs3>
-                <v-card>
-                    <v-card-title><h4>Roadmap</h4></v-card-title>
-                    <v-card-text>
-                        <v-list>
-                            <v-list-tile v-for="item in roadmap" :key="item.id">
-                            <v-list-tile-content>{{item}}</v-list-tile-content>
-                            </v-list-tile>
-                        </v-list>
-                    </v-card-text>
+                <v-card id='roadmap'>
+                    <v-container>
+                        <v-card-title><h3>Roadmap</h3></v-card-title>
+                        <v-card-text>
+                            <v-list>
+                                <v-list-tile v-for="item in roadmap" :key="item.id">
+                                <v-list-tile-content>{{item}}</v-list-tile-content>
+                                </v-list-tile>
+                            </v-list>
+                        </v-card-text>
+                    </v-container>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -132,3 +136,9 @@
         }
     }
 </script>
+
+<style>
+    #roadmap .card__text{
+        padding: 0;
+    }
+</style>

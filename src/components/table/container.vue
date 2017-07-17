@@ -1,13 +1,12 @@
 <template>
 <v-card class="grey lighten-5 elevation-0">
-    <v-card-title>
+    <v-card-title id='searchBar'>
       <v-text-field
         append-icon="search"
         label="Rechercher"
         single-line
         hide-details
-        v-model="search"
-      ></v-text-field>
+        v-model="search"></v-text-field>
       <v-spacer></v-spacer>
     </v-card-title>    
   <v-data-table
@@ -66,15 +65,11 @@
                 search: '',
                 selected: [],
                 headers: [
-                {
-                    text: 'Titre',
-                    align: 'center',
-                    value: 'titre'
-                },
+                { text: 'Titre', align: 'center',value: 'titre'},
                 { text: 'Auteur/trice', value: 'auteur' },
                 { text: 'Edition', value: 'edition' },
                 { text: 'Année', value: 'annee', sortable: false},
-                { text: 'Lu', align: 'center', value: 'lu', sortable: false },
+                { text: 'Lu', align: 'center', value: 'lu'},
                 { text: 'Note', align: 'center', value: 'note' }
                 ]
             }
@@ -142,7 +137,7 @@
         text-align: right;
     }
 
-    .card__title{
+    #searchBar{
         padding-left: 0px;
     }
 

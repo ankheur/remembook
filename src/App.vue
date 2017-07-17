@@ -17,6 +17,32 @@
 
 <style>
 
+h1, h2 {
+  font-weight: normal;
+}
+
+h1{
+  font-size: 4em;
+}
+
+h2{
+  font-size: 3em;
+  margin-bottom: 0px;
+}
+
+h3{
+  font-size: 2em;
+  margin-bottom: 0px;
+}
+
+h4{
+  font-size: 1.6em;
+}
+
+.card__title{
+  padding-left: 16px;
+}
+
 #mainWrapper {
   min-height: 100vh;
 }

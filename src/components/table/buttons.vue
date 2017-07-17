@@ -5,16 +5,14 @@
                 <v-btn class="indigo"
                     key="add"
                     fab dark
-                    bottom
                     right
                     @click.native='openForm'
-                    v-if='!displayForm'>
+                    v-if='!displayForm' fixed>
                 <v-icon>add</v-icon>
                 </v-btn>
                 <v-btn class="red"
                     key="close"
                     fab dark
-                    bottom
                     right
                     @click.native='closeForm'
                     v-if='displayForm'>
@@ -23,18 +21,16 @@
             </v-fab-transition>    
         </v-flex>
         <v-flex xs1 v-if='editBtn'>
-            <v-btn class="green"
+            <v-btn id='btn-edit' class="green"
                 fab dark
-                bottom
                 right
-                @click.native='editClicked'>
+                @click.native='editClicked' fixed>
             <v-icon>edit</v-icon>
             </v-btn>
-            <v-btn class="red"
+            <v-btn id='btn-delete' class="red"
                 fab dark
-                bottom
                 right
-                @click.native='deleteClicked'>
+                @click.native='deleteClicked' fixed>
             <v-icon>delete</v-icon>
             </v-btn>
         </v-flex>
@@ -58,6 +54,7 @@
             openForm(){
                 eventBus.$emit('resetForm')
                 this.$emit('openForm')
+                document.body.scrollTop = 0
             },
             closeForm(){
                 this.$emit('closeForm')
@@ -78,6 +75,8 @@
 
                 this.editBtn = false
                 this.addBtn = true
+
+                document.body.scrollTop = 0
             },
             deleteClicked(){
                 //Prévient Container qu'on a cliqué sur Supprimer
@@ -113,3 +112,8 @@
     }
 </script>
 
+<style>
+    #btn-delete{
+        margin-top: 5em;
+    }
+</style>

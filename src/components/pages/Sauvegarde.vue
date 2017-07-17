@@ -13,41 +13,45 @@
     </header>
     <main>
       <v-container>
-        <h3 class='text-xs-center'>Gestion de la sauvegarde</h3>
+        <h2 class='text-xs-center'>Gestion de la sauvegarde</h2>
         <v-layout row wrap>
             <v-flex xs12>
                 <v-card>
-                    <v-card-title>
-                        <h4>Exporter</h4>
-                    </v-card-title>
-                    <v-card-text>
-                        <v-alert info value="true">
-                            Attention, votre bibliothèque sera perdue si vous effacez les données de votre navigateur<br>
-                            Vous pouvez sauvegarder votre bibliothèque sur votre ordinateur en format .json ou .csv (recommandé)
-                        </v-alert>
-                        <v-layout row wrap>
-                            <v-flex xs2>
-                                <v-radio label="json" v-model="dlRadio" value="json"></v-radio>
-                            </v-flex>
-                            <v-flex xs2>
-                                <v-radio label="csv" v-model="dlRadio" value="csv"></v-radio>
-                            </v-flex>
-                        </v-layout>
-                        <v-btn @click.native='download'>Télécharger</v-btn>
-                    </v-card-text>
+                    <v-container>
+                        <v-card-title>
+                            <h3>Exporter</h3>
+                        </v-card-title>
+                        <v-card-text>
+                            <v-alert info value="true">
+                                Attention, votre bibliothèque sera perdue si vous effacez les données de votre navigateur<br>
+                                Vous pouvez sauvegarder votre bibliothèque sur votre ordinateur en format .json ou .csv (recommandé)
+                            </v-alert>
+                            <v-layout row wrap>
+                                <v-flex xs2>
+                                    <v-radio label="json" v-model="dlRadio" value="json"></v-radio>
+                                </v-flex>
+                                <v-flex xs2>
+                                    <v-radio label="csv" v-model="dlRadio" value="csv"></v-radio>
+                                </v-flex>
+                            </v-layout>
+                            <v-btn @click.native='download'>Télécharger</v-btn>
+                        </v-card-text>
+                    </v-container>
                 </v-card>
                 <v-card>
-                    <v-card-title>
-                        <h4>Importer</h4>
-                    </v-card-title>
-                    <v-card-text>
-                        <v-alert error dismissible v-model="alert">
-                            Ce type de fichier n'est pas autorisé. Veuillez uploader un fichier .json ou .csv
-                        </v-alert>
-                        <p>Vous pouvez importer une bibliothèque en format .json ou .csv</p>
-                        <input id="file" type="file">
-                        <v-btn @click.native='upload'>Uploader</v-btn>
-                    </v-card-text>
+                    <v-container>
+                        <v-card-title>
+                            <h3>Importer</h3>
+                        </v-card-title>
+                        <v-card-text>
+                            <v-alert error dismissible v-model="alert">
+                                Ce type de fichier n'est pas autorisé. Veuillez uploader un fichier .json ou .csv
+                            </v-alert>
+                            <p>Vous pouvez importer une bibliothèque en format .json ou .csv</p>
+                            <input id="file" type="file">
+                            <v-btn @click.native='upload'>Uploader</v-btn>
+                        </v-card-text>
+                    </v-container>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -83,6 +87,8 @@
                 this.$router.push('/')
             },
 
+
+            /* EXPORT */
             download(){
                 if(this.dlRadio === 'json'){
                     this.downloadJSON()
@@ -107,6 +113,8 @@
                 FileSaver.saveAs(sauvegarde, "bibliotheque.csv")
             },
 
+
+            /* IMPORT */
             upload(){
                 const fileInput = document.querySelector('#file')
 
@@ -114,6 +122,7 @@
                 this.imgType = fileInput.files[0].name.split('.')
                 this.imgType = this.imgType[this.imgType.length - 1]
 
+                //En fonction, on exécute la bonne fonction
                 if(this.imgType === 'json'){
                     this.uploadJSON(fileInput)
                 }
@@ -171,7 +180,22 @@
         let books = data.filter((book)=>{
             return book.titre != ''
         })
+        // return books
+
+        let cleanData = []
+
+        books.forEach((book)=>{
+           let cleanBook = {
+                titre: book.titre,
+                auteur: book.auteur || '',
+                edition: book.edition || '',
+                annee: book.annee,
+                lu: book.lu || false,
+                note: book.note || 0
+            }
+            cleanData.push(cleanBook)
+        })
         
-        return books
+        return cleanData
     }
 </script>
