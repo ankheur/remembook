@@ -1,23 +1,23 @@
 <template>
   <div>
     <header>
-      <v-container>
+      <v-container fluid>
         <v-layout row wrap justify-center>
           <h1>Remembook</h1>
           <v-spacer></v-spacer>
-          <v-btn primary dark class="grey" @click.native='redirectHome'>
+          <v-btn primary dark class="grey" to='/'>
             Retour
           </v-btn>
         </v-layout>
       </v-container>
     </header>
     <main>
-      <v-container>
+      <v-container fluid>
         <h2 class='text-xs-center'>Gestion de la sauvegarde</h2>
         <v-layout row wrap>
             <v-flex xs12>
                 <v-card>
-                    <v-container>
+                    <v-container fluid>
                         <v-card-title>
                             <h3>Exporter</h3>
                         </v-card-title>
@@ -39,7 +39,7 @@
                     </v-container>
                 </v-card>
                 <v-card>
-                    <v-container>
+                    <v-container fluid>
                         <v-card-title>
                             <h3>Importer</h3>
                         </v-card-title>
@@ -63,7 +63,7 @@
       :timeout="snackTimeout"
       v-model="snackbar">
       {{ snackText }}
-      <v-btn flat class="pink--text" @click.native="snackbar = false">Close</v-btn>
+      <v-btn flat class="pink--text" @click="snackbar = false">Close</v-btn>
     </v-snackbar>
   </div>
 </template>
@@ -83,10 +83,6 @@
             }
         },
         methods:{
-            redirectHome(){
-                this.$router.push('/')
-            },
-
 
             /* EXPORT */
             download(){

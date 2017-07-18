@@ -1,23 +1,23 @@
 <template>
   <div>
     <header>
-      <v-container>
+      <v-container fluid>
         <v-layout row wrap justify-center>
           <h1>Remembook</h1>
           <v-spacer></v-spacer>
-          <v-btn primary dark class="grey" @click.native='redirectHome'>
+          <v-btn primary dark class="grey" to='/'>
             Retour
           </v-btn>
         </v-layout>
       </v-container>
     </header>
     <main>
-      <v-container>
+      <v-container fluid>
         <h2 class='text-xs-center'>Notes de version</h2>
         <v-layout row wrap>
             <v-flex xs9>
                 <v-card v-for='version in versions' :key="version.id">
-                    <v-container>
+                    <v-container fluid>
                         <v-card-title>
                             <h3>{{version.title}}</h3>
                         </v-card-title>
@@ -44,7 +44,7 @@
             </v-flex>
             <v-flex xs3>
                 <v-card id='roadmap'>
-                    <v-container>
+                    <v-container fluid>
                         <v-card-title><h3>Roadmap</h3></v-card-title>
                         <v-card-text>
                             <v-list>
@@ -128,11 +128,6 @@
 
                 ]
             }
-        },
-        methods:{
-          redirectHome(){
-                this.$router.push('/')
-            }  
         }
     }
 </script>

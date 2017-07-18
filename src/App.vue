@@ -58,4 +58,11 @@ h4{
   margin-left: 50px;
 }
 
+
+@media screen and (min-width: 1200px){
+  .container.fluid{
+    width: 90%;
+    margin: auto;
+  }
+}
 </style>

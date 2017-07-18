@@ -6,7 +6,7 @@
                     key="add"
                     fab dark
                     right
-                    @click.native='openForm'
+                    @click='openForm'
                     v-if='!displayForm' fixed>
                 <v-icon>add</v-icon>
                 </v-btn>
@@ -14,7 +14,7 @@
                     key="close"
                     fab dark
                     right
-                    @click.native='closeForm'
+                    @click='closeForm'
                     v-if='displayForm'>
                 <v-icon>close</v-icon>
                 </v-btn>
@@ -24,13 +24,13 @@
             <v-btn id='btn-edit' class="green"
                 fab dark
                 right
-                @click.native='editClicked' fixed>
+                @click='editClicked' fixed>
             <v-icon>edit</v-icon>
             </v-btn>
             <v-btn id='btn-delete' class="red"
                 fab dark
                 right
-                @click.native='deleteClicked' fixed>
+                @click='deleteClicked' fixed>
             <v-icon>delete</v-icon>
             </v-btn>
         </v-flex>

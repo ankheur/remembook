@@ -1,13 +1,13 @@
 <template>
   <div id='mainWrapper'>
     <header>
-      <v-container>
+      <v-container fluid>
         <v-layout row wrap justify-center>
           <h1>Remembook</h1>
           <v-spacer></v-spacer>
           <v-menu
           transition="v-slide-y-transition"
-          bottom>
+          bottom left>
             <v-btn primary dark slot="activator" class="grey">
               Menu
             </v-btn>
@@ -20,14 +20,14 @@
         </v-layout>
       </v-container>
     </header>
-    <v-container>
+    <v-container fluid>
         <v-alert info dismissible v-model="avertissement">
           Cette app est en cours de développement. Il est recommandé de sauvegarder vos données régulièrement
           (menu -> exporter)
         </v-alert>
     </v-container>
     <main>
-      <v-container>
+      <v-container fluid>
         <v-layout row wrap justify-center>
           <v-flex xs11>
             <keep-alive>
@@ -54,8 +54,8 @@
             <v-card-text>Vos données seront effacées de votre navigateur. Vous perdrez votre bibliothèque</v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn class="green--text darken-1" flat="flat" @click.native="resetConfirm = false">Annuler</v-btn>
-              <v-btn class="green--text darken-1" flat="flat" @click.native="resetSave">Confirmer</v-btn>
+              <v-btn class="green--text darken-1" flat="flat" @click="resetConfirm = false">Annuler</v-btn>
+              <v-btn class="green--text darken-1" flat="flat" @click="resetSave">Confirmer</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -69,7 +69,7 @@
       :timeout="snackTimeout"
       v-model="snackbar">
       {{ snackText }}
-      <v-btn flat class="pink--text" @click.native="snackbar = false">Fermer</v-btn>
+      <v-btn flat class="pink--text" @click="snackbar = false">Fermer</v-btn>
     </v-snackbar>
   </div>    
 </template>
