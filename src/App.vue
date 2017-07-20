@@ -4,6 +4,7 @@
     <v-footer>
         <p>2017 Remembook. Créé par
           <a href="https://github.com/ThunderAnkh">Ankh</a>
+          avec <a href='https://vuejs.org/'>VueJS</a> et <a href='https://vuetifyjs.com/'>Vuetify</a>
         </p>
     </v-footer>
   </v-app>

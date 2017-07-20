@@ -134,10 +134,9 @@
                     ]
                 }],
                 roadmap: [
-                    'Responsive design',
-                    'Ajout du champ "Prêté"',
+                    'Multilangue',
                     'Statistiques',
-                    'App Android/iOS/PC'
+                    'App Android/iOS'
 
                 ]
             }
