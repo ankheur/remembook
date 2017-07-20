@@ -187,7 +187,9 @@
                 edition: book.edition || '',
                 annee: book.annee,
                 lu: book.lu || false,
-                note: book.note || 0
+                note: book.note || 0,
+                pret: book.pret || false,
+                pretPerson: book.pretPerson || ''
             }
             cleanData.push(cleanBook)
         })

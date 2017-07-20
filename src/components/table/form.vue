@@ -49,11 +49,16 @@
             </v-flex>
             <v-flex xs3 >
                 <v-layout row justify-center>
-                    <v-btn @click.native='formSubmit' :disabled="bookTitle === ''">{{submitTxt}}</v-btn>
+                    <v-btn @click='formSubmit' :disabled="bookTitle === ''">{{submitTxt}}</v-btn>
                 </v-layout>
             </v-flex>
         </v-layout>
         <v-layout>
+            <v-flex xs3>
+                <v-checkbox label="Prêté" v-model='bookLend'></v-checkbox>
+                <v-text-field v-show='bookLend' name='input-5'  id='bookLender' label='nom' v-model='bookLender'>
+                </v-text-field> 
+            </v-flex>
             <v-flex xs4 class='review__note'>
                 Note
                 <template v-for='num in [5,4,3,2,1]'>
@@ -79,6 +84,8 @@
                 bookYear: 0,
                 bookRead: false,
                 bookNote: 0,
+                bookLend: false,
+                bookLender: '',
                 submitTxt: 'Ajouter',
 
                 idxSelected: null,
@@ -94,7 +101,9 @@
                         edition: this.bookEditor,
                         annee: this.bookYear,
                         lu: this.bookRead,
-                        note: this.bookNote || 0
+                        note: this.bookNote || 0,
+                        pret: this.bookLend,
+                        pretPerson: this.bookLender
                     }
 
                 if(this.bookTitle !== ''){
@@ -154,6 +163,12 @@
                 this.bookYear = $event.el.annee
                 this.bookRead = $event.el.lu
                 this.bookNote = $event.el.note
+                this.bookLend = $event.el.pret
+                this.bookLender = $event.el.pretPerson
+
+                // if(this.bookLender !== ''){ 
+                //     this.bookLend = true
+                // }
 
                 this.idxSelected = $event.index
 
@@ -167,6 +182,8 @@
                 this.bookYear = null
                 this.bookRead = false
                 this.bookNote = null
+                this.bookLend = false
+                this.bookLender = ''
             })
         },
         filters: {

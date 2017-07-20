@@ -68,7 +68,20 @@
             return{
                 versions: [
                 {
-                    title: 'V0.4 - Judgment road',
+                    title: 'V0.5 - Sharing crossroads',
+                    features: [
+                        "Indication du prêt et à qui",
+                        "Amélioration du design responsive",
+                        "Les boutons sont désormais fixés"
+                    ],
+                    bugs: [
+                        "Correction d'erreurs lors d'import csv",
+                        "Cliquer sur la ligne permet de la sélectionner",
+                        "Correction du tri pour les notes et la lecture"
+                    ]
+                },
+                {
+                    title: 'V0.4 - Judgment street',
                     features: [
                         "Système de notation",
                         "Ajout d'un footer",

@@ -19,35 +19,45 @@
       selected-key="titre"
       select-all @input='selectionAction'
       no-data-text="Aucune entrée trouvée"> <!-- hide-actions permet de cacher ou non la pagination-->
+
     
     <template slot="items" scope="props">
-        <td>
-            <v-checkbox
-            primary
-            hide-details
-            v-model="props.selected"></v-checkbox>
-        </td>
-        <td class="text-xs-center">
-            {{ props.item.titre }}
-        </td>
-        <td class="text-xs-right">
-            {{ props.item.auteur }}
-        </td>
-        <td class="text-xs-right">
-            {{ props.item.edition }}
-        </td>
-        <td class="text-xs-right">
-            {{ props.item.annee }}
-        </td>
-        <td class="text-xs-center">
-            <v-icon light v-if='props.item.lu'>check</v-icon>
-            <v-icon light v-else>clear</v-icon>
-        </td>
-        <td class="text-xs-right note">
-            <template v-for='star in props.item.note'>
-                  <span></span>
-            </template>
-        </td>
+        <tr :active="props.selected" @click="props.selected = !props.selected">
+            <td>
+                <v-checkbox
+                primary
+                hide-details
+                v-model="props.selected"></v-checkbox>
+            </td>
+            <td class="text-xs-center">
+                {{ props.item.titre }}
+            </td>
+            <td class="text-xs-right">
+                {{ props.item.auteur }}
+            </td>
+            <td class="text-xs-right">
+                {{ props.item.edition }}
+            </td>
+            <td class="text-xs-right">
+                {{ props.item.annee }}
+            </td>
+            <td class="text-xs-center">
+                <v-icon light v-if='props.item.lu'>check</v-icon>
+                <v-icon light v-else>clear</v-icon>
+            </td>
+            <td class="text-xs-center">
+                <span v-tooltip:top="{html:props.item.pretPerson, visible: props.item.pretPerson !== '' ? true : false }">
+                    <v-icon v-if='props.item.pret' >
+                        account_circle
+                    </v-icon>
+                </span>
+            </td>
+            <td class="text-xs-right note">
+                <template v-for='star in props.item.note'>
+                    <v-icon>grade</v-icon>
+                </template>
+            </td>
+        </tr>
     </template>
 
   </v-data-table>
@@ -70,6 +80,7 @@
                 { text: 'Edition', value: 'edition' },
                 { text: 'Année', value: 'annee', sortable: false},
                 { text: 'Lu', align: 'center', value: 'lu'},
+                { text: 'Prêté', align: 'center', value: 'pret'},
                 { text: 'Note', align: 'center', value: 'note' }
                 ]
             }
@@ -131,14 +142,20 @@
         justify-content: center;
         align-items: center;
     }
-    .note span:before{ 
-        content: '\2605';
+    .note i{ 
         font-size: 1rem;
-        text-align: right;
+    }
+
+    .avatar .icon{
+        height: auto;
     }
 
     #searchBar{
         padding-left: 0px;
+    }
+
+    tr{
+        cursor: pointer;
     }
 
 </style>
