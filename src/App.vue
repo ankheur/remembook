@@ -2,8 +2,7 @@
   <v-app id="app">
     <router-view></router-view>
     <v-footer>
-        <p>2017 Remembook. Créé par
-          <a href="https://github.com/ThunderAnkh">Ankh</a>
+        <p>2017 ©<a href='https://github.com/ThunderAnkh/remembook'>Remembook</a>. Créé par Ankh
           avec <a href='https://vuejs.org/'>VueJS</a> et <a href='https://vuetifyjs.com/'>Vuetify</a>
         </p>
     </v-footer>
