@@ -124,7 +124,6 @@
 
             /* FONCTION POUR L'API */
             // autoComplete(){
-            //     const key = 'AIzaSyA2M20Jknh3udtqKeSdTzj597eGSLpgkGw'
 
             //     if(this.bookTitle !== '' && this.submitTxt === 'Ajouter'){
             //         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.bookTitle}+intitle&projection=lite&maxResults=3&country=FR&language=fr&key=${key}&fields=items/volumeInfo(title,authors,publishedDate)`)
