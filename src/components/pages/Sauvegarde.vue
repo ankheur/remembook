@@ -34,7 +34,7 @@
                                     <v-radio label="csv" v-model="dlRadio" value="csv"></v-radio>
                                 </v-flex>
                             </v-layout>
-                            <v-btn @click.native='download'>Télécharger</v-btn>
+                            <v-btn @click='download'>Télécharger</v-btn>
                         </v-card-text>
                     </v-container>
                 </v-card>
@@ -49,7 +49,7 @@
                             </v-alert>
                             <p>Vous pouvez importer une bibliothèque en format .json ou .csv</p>
                             <input id="file" type="file">
-                            <v-btn @click.native='upload'>Uploader</v-btn>
+                            <v-btn @click='upload'>Uploader</v-btn>
                         </v-card-text>
                     </v-container>
                 </v-card>

@@ -157,7 +157,6 @@ export default {
     //Dès le démarrage de l'application, on récupère les données du LocalStorage
     if(Vue.ls.get('books')){
       this.books = Vue.ls.get('books')
-      console.log(Vue.ls.get('books'))
     }
   },
   destroyed () {
