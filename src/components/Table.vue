@@ -42,7 +42,7 @@
               bottom right fixed
               class="green"
               v-if='scrollBtnActivated'
-              @click.native='moveTop'>
+              @click='moveTop'>
               <v-icon>keyboard_arrow_up</v-icon>
           </v-btn>
           </v-fab-transition>
@@ -115,9 +115,7 @@ export default {
       scrollBtnActivated: false
     }
   },
-  computed:{
-    
-  },
+
   methods:{
     addBook(e){
       this.books.push(e)
@@ -167,8 +165,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-
-</style>

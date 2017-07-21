@@ -184,18 +184,18 @@
                 this.bookLend = false
                 this.bookLender = ''
             })
-        },
-        filters: {
-            trimTitle(value){
-                let max = 45
-                if(value.length > max){
-                    return value.substring(0,max)+'...'
-                }
-                else{
-                    return value.substring(0,max)
-                }
-            }
         }
+        // filters: {
+        //     trimTitle(value){
+        //         let max = 45
+        //         if(value.length > max){
+        //             return value.substring(0,max)+'...'
+        //         }
+        //         else{
+        //             return value.substring(0,max)
+        //         }
+        //     }
+        // }
     }
 </script>
 
