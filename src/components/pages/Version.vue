@@ -23,7 +23,7 @@
                         </v-card-title>
                         <v-card-text>
                             <v-list v-if='version.features' >
-                            <v-list-tile-title><h4>Fonctionalités</h4></v-list-tile-title>
+                            <v-list-tile-title><h4>Fonctionnalités</h4></v-list-tile-title>
                             <v-list-tile v-for="feature in version.features" :key="feature.id">
                                     <v-list-tile-content>
                                         {{feature}}
