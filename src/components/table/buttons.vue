@@ -54,7 +54,9 @@
             openForm(){
                 eventBus.$emit('resetForm')
                 this.$emit('openForm')
-                document.body.scrollTop = 0
+                
+                let scrollingElement = document.scrollingElement || document.documentElement
+                scrollingElement.scrollTop = 0
             },
             closeForm(){
                 this.$emit('closeForm')

@@ -6,7 +6,7 @@
           <h1>Remembook</h1>
           <v-spacer></v-spacer>
           <v-btn primary dark class="grey" to='/'>
-            Retour
+                Retour
           </v-btn>
         </v-layout>
       </v-container>

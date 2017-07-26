@@ -37,15 +37,15 @@
           </v-flex>
           <app-buttons :displayForm='displayForm' @openForm='displayForm = true' @closeForm='displayForm = false'></app-buttons>
 
-          <v-fab-transition>
-          <v-btn dark fab
-              bottom right fixed
-              class="green"
-              v-if='scrollBtnActivated'
-              @click='moveTop'>
-              <v-icon>keyboard_arrow_up</v-icon>
-          </v-btn>
-          </v-fab-transition>
+          <v-fab-transition> 
+            <v-btn dark fab
+                bottom right fixed
+                class="green"
+                v-if='scrollBtnActivated'
+                @click='moveTop'>
+                <v-icon>keyboard_arrow_up</v-icon>
+            </v-btn>
+          </v-fab-transition> 
         </v-layout>
     
         <v-dialog v-model="resetConfirm">
@@ -138,7 +138,8 @@ export default {
     },
 
     moveTop(){
-      document.body.scrollTop = 0
+      let scrollingElement = document.scrollingElement || document.documentElement
+      scrollingElement.scrollTop = 0
     },
 
     scrolled(){
