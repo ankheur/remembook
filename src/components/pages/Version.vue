@@ -1,3 +1,16 @@
+<i18n>
+{
+  "en": {
+    "retour": "Back",
+    "version": "Release notes"
+  },
+  "fr": {
+    "retour": "Retour",
+    "version": "Notes de version"
+  }
+}
+</i18n>
+
 <template>
   <div>
     <header>
@@ -6,14 +19,14 @@
           <h1>Remembook</h1>
           <v-spacer></v-spacer>
           <v-btn primary dark class="grey" to='/'>
-                Retour
+                {{ $t('retour') }}
           </v-btn>
         </v-layout>
       </v-container>
     </header>
     <main>
       <v-container fluid>
-        <h2 class='text-xs-center'>Notes de version</h2>
+        <h2 class='text-xs-center'>{{ $t('version') }}</h2>
         <v-layout row wrap>
             <v-flex xs9>
                 <v-card v-for='version in versions' :key="version.id">
@@ -66,6 +79,7 @@
     export default {
         data(){
             return{
+                locale: 'fr',
                 versions: [
                 {
                     title: 'V0.5 - Sharing crossroads',
@@ -139,6 +153,11 @@
                     'App Android/iOS'
 
                 ]
+            }
+        },
+        watch:{
+            locale (val){
+                this.$i18n.locale = val
             }
         }
     }
