@@ -1,6 +1,30 @@
 <template>
   <v-app id="app">
-    <router-view></router-view>
+    <header>
+      <v-layout row wrap justify-center>
+        <v-toolbar light class='elevation-1'>
+          <img src='../favicon.png' height='32px'>
+          <h1><v-toolbar-title>Remembook</v-toolbar-title></h1>
+          <v-spacer></v-spacer>
+          <v-menu
+          transition="v-slide-y-transition"
+          bottom left>
+            <v-btn primary dark slot="activator" class="grey">
+              Menu
+            </v-btn>
+            <v-list>
+              <v-list-tile v-for="item in menuItems" :key="item">
+                <v-list-tile-title @click='item.action'>{{ item.title }}</v-list-tile-title>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+        </v-toolbar>
+      </v-layout>
+    </header>
+
+    <router-view>      
+    </router-view>
+
     <v-footer>
         <p>2017 ©<a href='https://github.com/ThunderAnkh/remembook'>Remembook</a>. Créé par Ankh
           avec <a href='https://vuejs.org/'>VueJS</a> et <a href='https://vuetifyjs.com/'>Vuetify</a>
@@ -11,18 +35,39 @@
 
 <script>
   export default {
-
+      data(){
+        return{
+          menuItems: [
+            {
+              title: 'Importer/Exporter sauvegarde',
+              action: ()=>{
+                this.$router.push('/sauvegarde')
+              }
+            },
+            {
+              title: 'Notes de version',
+              action: ()=>{
+                  this.$router.push('/version')
+              }
+            }
+          ]
+        }
+      }
   }
 </script>
 
 <style>
+
+.toolbar__title{
+    font-size: 0.3em;
+}
 
 h1, h2 {
   font-weight: normal;
 }
 
 h1{
-  font-size: 4em;
+  margin-bottom: 0px;
 }
 
 h2{
@@ -63,6 +108,10 @@ h4{
   .container.fluid{
     width: 90%;
     margin: auto;
+  }
+
+  img{
+    height: 42px;
   }
 }
 </style>

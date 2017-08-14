@@ -1,25 +1,5 @@
 <template>
   <div id='mainWrapper'>
-    <header>
-      <v-container fluid>
-        <v-layout row wrap justify-center>
-          <h1>Remembook</h1>
-          <v-spacer></v-spacer>
-          <v-menu
-          transition="v-slide-y-transition"
-          bottom left>
-            <v-btn primary dark slot="activator" class="grey">
-              Menu
-            </v-btn>
-            <v-list>
-              <v-list-tile v-for="item in menuItems" :key="item">
-                <v-list-tile-title @click='item.action'>{{ item.title }}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
-        </v-layout>
-      </v-container>
-    </header>
     <v-container fluid>
         <v-alert info dismissible v-model="avertissement">
           Cette app est en cours de développement. Il est recommandé de sauvegarder vos données régulièrement
@@ -47,19 +27,6 @@
             </v-btn>
           </v-fab-transition> 
         </v-layout>
-    
-        <v-dialog v-model="resetConfirm">
-          <v-card>
-            <v-card-title class="headline text-xs-center">Supprimer les données du site ?</v-card-title>
-            <v-card-text>Vos données seront effacées de votre navigateur. Vous perdrez votre bibliothèque</v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn class="green--text darken-1" flat="flat" @click="resetConfirm = false">Annuler</v-btn>
-              <v-btn class="green--text darken-1" flat="flat" @click="resetSave">Confirmer</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-
       </v-container>
     </main>
 
@@ -87,31 +54,10 @@ export default {
     return {
       displayForm: false,
       books: [],
-      resetConfirm: false,
       snackbar: false,
       snackText: 'Base de données mise à jour!',
       snackTimeout: 2000,
       avertissement: true,
-      menuItems: [
-        {
-          title: 'Importer/Exporter sauvegarde',
-          action: ()=>{
-            this.$router.push('/sauvegarde')
-          }
-        },
-        {
-          title: 'Reset sauvegarde',
-          action: ()=>{
-            this.resetConfirm = true
-          }
-        },
-        {
-          title: 'Notes de version',
-          action: ()=>{
-              this.$router.push('/version')
-          }
-        }
-      ],
       scrollBtnActivated: false
     }
   },
@@ -129,12 +75,6 @@ export default {
       this.displayForm = false
       Vue.ls.set('books', this.books)
       this.snackbar = true
-    },
-    
-    resetSave(){
-      Vue.ls.remove('books')
-      this.resetConfirm = false
-      location.reload();
     },
 
     moveTop(){

@@ -13,17 +13,6 @@
 
 <template>
   <div>
-    <header>
-      <v-container fluid>
-        <v-layout row wrap justify-center>
-          <h1>Remembook</h1>
-          <v-spacer></v-spacer>
-          <v-btn primary dark class="grey" to='/'>
-                {{ $t('retour') }}
-          </v-btn>
-        </v-layout>
-      </v-container>
-    </header>
     <main>
       <v-container fluid>
         <h2 class='text-xs-center'>{{ $t('version') }}</h2>

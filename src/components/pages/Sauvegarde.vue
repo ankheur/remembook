@@ -1,16 +1,5 @@
 <template>
   <div>
-    <header>
-      <v-container fluid>
-        <v-layout row wrap justify-center>
-          <h1>Remembook</h1>
-          <v-spacer></v-spacer>
-          <v-btn primary dark class="grey" to='/'>
-            Retour
-          </v-btn>
-        </v-layout>
-      </v-container>
-    </header>
     <main>
       <v-container fluid>
         <h2 class='text-xs-center'>Gestion de la sauvegarde</h2>
@@ -53,7 +42,30 @@
                         </v-card-text>
                     </v-container>
                 </v-card>
+                <v-card>
+                    <v-container fluid>
+                        <v-card-title>
+                            <h3>Reset</h3>
+                        </v-card-title>
+                        <v-card-text>
+                            <p>Attention ! Supprimer votre sauvegarde est irréversible. Vous pouvez d'abord l'exporter pour en garder une copie sur votre ordinateur</p>
+                            <v-btn @click='resetConfirm = true'>Supprimer</v-btn>
+                        </v-card-text>
+                    </v-container>
+                </v-card>
             </v-flex>
+
+            <v-dialog v-model="resetConfirm">
+                <v-card>
+                    <v-card-title class="headline text-xs-center">Confirmer la suppression des données</v-card-title>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn class="green--text darken-1" flat="flat" @click="resetConfirm = false">Annuler</v-btn>
+                        <v-btn class="green--text darken-1" flat="flat" @click="reset">Confirmer</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+
         </v-layout>
       </v-container>
     </main>
@@ -69,6 +81,8 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+
     const FileSaver = require('file-saver')
     const Papa = require('papaparse')
     export default {
@@ -77,9 +91,10 @@
                 dlRadio: 'csv',
                 imgType: '', 
                 snackbar: false,
-                snackText: 'Upload terminé, base de données mise à jour',
+                snackText: '',
                 snackTimeout: 2000,
-                alert: false
+                alert: false,
+                resetConfirm: false
             }
         },
         methods:{
@@ -162,12 +177,21 @@
                     }
                     sauvegarde = JSON.stringify(sauvegarde)
                     localStorage.setItem("books", sauvegarde)
+                    this.snackText = 'Upload terminé, base de données mise à jour'
                     this.snackbar = true
                     fileInput.value = ''
                 })
 
                 //Lecture du fichier
                 reader.readAsText(fileInput.files[0])
+            },
+
+            reset(){
+                Vue.ls.remove('books')
+                
+                this.resetConfirm = false
+                this.snackText = 'Base de données effacée'
+                this.snackbar = true
             }           
         }
     }

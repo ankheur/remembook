@@ -78,7 +78,7 @@
                 { text: 'Titre', align: 'center',value: 'titre'},
                 { text: 'Auteur/trice', value: 'auteur' },
                 { text: 'Edition', value: 'edition' },
-                { text: 'Année', value: 'annee', sortable: false},
+                { text: 'Année', value: 'annee'},
                 { text: 'Lu', align: 'center', value: 'lu'},
                 { text: 'Prêté', align: 'center', value: 'pret'},
                 { text: 'Note', align: 'center', value: 'note' }
