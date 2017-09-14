@@ -1,20 +1,25 @@
 <template>
   <div id='mainWrapper'>
+
     <v-container fluid>
         <v-alert info dismissible v-model="avertissement">
           Cette app est en cours de développement. Il est recommandé de sauvegarder vos données régulièrement
           (menu -> exporter)
         </v-alert>
     </v-container>
+
+
     <main>
       <v-container fluid>
         <v-layout row wrap justify-center>
+
           <v-flex xs11>
             <keep-alive>
               <app-form v-show='displayForm' @addEvent='addBook($event)' @editEvent='editBook($event)' :displayForm='displayForm'></app-form>
             </keep-alive>
             <app-container :books='books'></app-container>
           </v-flex>
+
           <app-buttons :displayForm='displayForm' @openForm='displayForm = true' @closeForm='displayForm = false'></app-buttons>
 
           <v-fab-transition> 
@@ -26,9 +31,11 @@
                 <v-icon>keyboard_arrow_up</v-icon>
             </v-btn>
           </v-fab-transition> 
+
         </v-layout>
       </v-container>
     </main>
+    
 
     <v-snackbar
       bottom
@@ -38,6 +45,7 @@
       {{ snackText }}
       <v-btn flat class="pink--text" @click="snackbar = false">Fermer</v-btn>
     </v-snackbar>
+
   </div>    
 </template>
 

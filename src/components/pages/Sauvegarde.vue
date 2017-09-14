@@ -5,6 +5,7 @@
         <h2 class='text-xs-center'>Gestion de la sauvegarde</h2>
         <v-layout row wrap>
             <v-flex xs12>
+                
                 <v-card>
                     <v-container fluid>
                         <v-card-title>
@@ -25,8 +26,10 @@
                             </v-layout>
                             <v-btn @click='download'>Télécharger</v-btn>
                         </v-card-text>
+
                     </v-container>
                 </v-card>
+
                 <v-card>
                     <v-container fluid>
                         <v-card-title>
@@ -42,6 +45,7 @@
                         </v-card-text>
                     </v-container>
                 </v-card>
+
                 <v-card>
                     <v-container fluid>
                         <v-card-title>
@@ -54,6 +58,7 @@
                     </v-container>
                 </v-card>
             </v-flex>
+
 
             <v-dialog v-model="resetConfirm">
                 <v-card>

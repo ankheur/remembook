@@ -1,5 +1,6 @@
 <template>
     <v-fab-transition>
+
         <v-flex xs1 v-if='addBtn'>
             <v-fab-transition>
                 <v-btn class="indigo"
@@ -10,6 +11,7 @@
                     v-if='!displayForm' fixed>
                 <v-icon>add</v-icon>
                 </v-btn>
+                
                 <v-btn class="red"
                     key="close"
                     fab dark
@@ -20,6 +22,7 @@
                 </v-btn>
             </v-fab-transition>    
         </v-flex>
+
         <v-flex xs1 v-if='editBtn'>
             <v-btn id='btn-edit' class="green"
                 fab dark
@@ -34,6 +37,7 @@
             <v-icon>delete</v-icon>
             </v-btn>
         </v-flex>
+
     </v-fab-transition>
 </template>
 

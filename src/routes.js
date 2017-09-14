@@ -7,6 +7,9 @@ export const routes = [
     {path: '/',
     component: Table},
 
+    {path: '/bibliotheque',
+    component: Table},
+
     {path: '/version',
     component: Version},
 

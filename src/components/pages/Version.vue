@@ -25,7 +25,7 @@
                         </v-card-title>
                         <v-card-text>
                             <v-list v-if='version.features' >
-                            <v-list-tile-title><h4>Fonctionnalités</h4></v-list-tile-title>
+                            <h4>Fonctionnalités</h4>
                             <v-list-tile v-for="feature in version.features" :key="feature.id">
                                     <v-list-tile-content>
                                         {{feature}}
@@ -33,7 +33,7 @@
                             </v-list-tile>
                             </v-list>
                             <v-list v-if='version.bugs'>
-                                <v-list-tile-title><h4>Corrections</h4></v-list-tile-title>
+                                <h4>Corrections</h4>
                                 <v-list-tile v-for="bug in version.bugs" :key="bug.id">
                                     <v-list-tile-content>
                                         {{bug}}
@@ -153,6 +153,7 @@
 </script>
 
 <style>
+    
     #roadmap .card__text{
         padding: 0;
     }

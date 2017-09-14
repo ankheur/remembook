@@ -4,20 +4,13 @@
       <v-layout row wrap justify-center>
         <v-toolbar light class='elevation-1'>
           <img src='../favicon.png' height='32px'>
-          <h1><v-toolbar-title>Remembook</v-toolbar-title></h1>
+          <v-toolbar-title>Remembook</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-menu
-          transition="v-slide-y-transition"
-          bottom left>
-            <v-btn primary dark slot="activator" class="grey">
-              Menu
-            </v-btn>
-            <v-list>
-              <v-list-tile v-for="item in menuItems" :key="item">
-                <v-list-tile-title @click='item.action'>{{ item.title }}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
+          <v-toolbar-items class="hidden-sm-and-down">
+            <v-btn flat to="/bibliotheque">Bibliothèque</v-btn>
+            <v-btn flat to="/sauvegarde">Sauvegarde</v-btn>
+            <v-btn flat to="/version">Version</v-btn>
+          </v-toolbar-items>
         </v-toolbar>
       </v-layout>
     </header>
@@ -37,20 +30,6 @@
   export default {
       data(){
         return{
-          menuItems: [
-            {
-              title: 'Importer/Exporter sauvegarde',
-              action: ()=>{
-                this.$router.push('/sauvegarde')
-              }
-            },
-            {
-              title: 'Notes de version',
-              action: ()=>{
-                  this.$router.push('/version')
-              }
-            }
-          ]
         }
       }
   }
@@ -59,20 +38,14 @@
 <style>
 
 .toolbar__title{
-    font-size: 0.3em;
+    font-size: 3em;
 }
 
-h1, h2 {
-  font-weight: normal;
-}
-
-h1{
-  margin-bottom: 0px;
-}
 
 h2{
   font-size: 3em;
   margin-bottom: 0px;
+  font-weight: normal;
 }
 
 h3{
