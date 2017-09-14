@@ -15,7 +15,7 @@
     "vue-i18n": "^7.1.1",
     "vue-ls": "^2.3.0",
     "vue-router": "^2.7.0",
-    "vuetify": "^0.15.6"
+    "vuetify": "^0.15.7"
   },
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "^0.2.0",
@@ -29,6 +29,6 @@
     "vue-template-compiler": "^2.4.3",
     "webpack": "^3.5.6",
     "webpack-dev-middleware": "^1.12.0",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^2.8.1"
   }
 }
