@@ -72,6 +72,17 @@
             return{
                 versions: [
                 {
+                    title: 'V0.6 - International lands',
+                    features: [
+                        "Traduction anglaise (pour les navigateurs internationaux)",
+                        "Refonte du menu",
+                        "Publication du code source sur GitHub (lien dans le pied-de-page)"
+                    ],
+                    bugs: [
+                        "Correction du tri de l'année"
+                    ]
+                },
+                {
                     title: 'V0.5 - Sharing crossroads',
                     features: [
                         "Indication du prêt et à qui",
@@ -138,7 +149,6 @@
                     ]
                 }],
                 roadmap: [
-                    'Multilangue',
                     'Statistiques',
                     'App Android/iOS'
 
