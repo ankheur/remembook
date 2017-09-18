@@ -1,12 +1,14 @@
 <i18n>
 {
   "en": {
-    "retour": "Back",
-    "version": "Release notes"
+    "notes": "Release notes",
+    "features": "Features",
+    "fix": "Fixes"
   },
   "fr": {
-    "retour": "Retour",
-    "version": "Notes de version"
+    "notes": "Notes de version",
+     "features": "Fonctionnalités",
+     "fix": "Corrections"
   }
 }
 </i18n>
@@ -15,7 +17,7 @@
   <div>
     <main>
       <v-container fluid>
-        <h2 class='text-xs-center'>{{ $t('version') }}</h2>
+        <h2 class='text-xs-center'>{{ $t('notes') }}</h2>
         <v-layout row wrap>
             <v-flex xs9>
                 <v-card v-for='version in versions' :key="version.id">
@@ -25,7 +27,7 @@
                         </v-card-title>
                         <v-card-text>
                             <v-list v-if='version.features' >
-                            <h4>Fonctionnalités</h4>
+                            <h4>{{ $t('features') }}</h4>
                             <v-list-tile v-for="feature in version.features" :key="feature.id">
                                     <v-list-tile-content>
                                         {{feature}}
@@ -33,7 +35,7 @@
                             </v-list-tile>
                             </v-list>
                             <v-list v-if='version.bugs'>
-                                <h4>Corrections</h4>
+                                <h4>{{ $t('fix') }}</h4>
                                 <v-list-tile v-for="bug in version.bugs" :key="bug.id">
                                     <v-list-tile-content>
                                         {{bug}}
@@ -68,7 +70,6 @@
     export default {
         data(){
             return{
-                locale: 'fr',
                 versions: [
                 {
                     title: 'V0.5 - Sharing crossroads',
@@ -142,11 +143,6 @@
                     'App Android/iOS'
 
                 ]
-            }
-        },
-        watch:{
-            locale (val){
-                this.$i18n.locale = val
             }
         }
     }

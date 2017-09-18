@@ -1,3 +1,28 @@
+<i18n>
+{
+  "en": {
+    "title": "Title",
+    "author": "Author",
+    "edition": "Edition",
+    "year": "Year",
+    "read": "Read",
+    "lend": "Lent",
+    "lendName": "Name",
+    "grade": "Grade"
+  },
+  "fr": {
+    "title": "Titre",
+    "author": "Auteur/trice",
+    "edition": "Edition",
+    "year": "Année",
+    "read": "Lu",
+    "lend": "Prêté",
+    "lendName": "Nom",
+    "grade": "Note"
+  }
+}
+</i18n>
+
 <template>
   <v-card class="grey lighten-4 elevation-1" id='form'>
     <v-card-text>
@@ -7,7 +32,7 @@
                 <v-layout row>
                     <v-text-field
                     name="input-1"
-                    label="Titre"
+                    :label="$t('title')"
                     id="bookTitle"
                     v-model='bookTitle'></v-text-field>
                 </v-layout>
@@ -22,28 +47,28 @@
                     <v-flex xs3>
                         <v-text-field
                         name="input-2"
-                        label="Auteur"
+                        :label="$t('author')"
                         id="bookAuthor"
                         v-model='bookAuthor'></v-text-field>
                     </v-flex>
                     <v-flex xs3>
                         <v-text-field
                         name="input-3"
-                        label="Edition"
+                        :label="$t('edition')"
                         id="bookEditor"
                         v-model='bookEditor'></v-text-field>
                     </v-flex>
                     <v-flex xs3>
                         <v-text-field
                         name="input-4"
-                        label="Année"
+                        :label="$t('year')"
                         id="bookYear"
                         type='number'
                         maxlength=4
                         v-model='bookYear'></v-text-field>
                     </v-flex>
                     <v-flex xs3>
-                        <v-checkbox label="lu" v-model="bookRead"></v-checkbox>
+                        <v-checkbox :label="$t('read')" v-model="bookRead"></v-checkbox>
                     </v-flex>
                 </v-layout>
             </v-flex>
@@ -55,12 +80,12 @@
         </v-layout>
         <v-layout>
             <v-flex xs3>
-                <v-checkbox label="Prêté" v-model='bookLend'></v-checkbox>
-                <v-text-field v-show='bookLend' name='input-5'  id='bookLender' label='nom' v-model='bookLender'>
+                <v-checkbox :label="$t('lend')" v-model='bookLend'></v-checkbox>
+                <v-text-field v-show='bookLend' name='input-5'  id='bookLender' :label="$t('lendName')" v-model='bookLender'>
                 </v-text-field> 
             </v-flex>
             <v-flex xs4 class='review__note'>
-                Note
+                {{ $t('grade') }}
                 <template v-for='num in [5,4,3,2,1]'>
                     <input type="radio" :id='num' name="rating" :value='num' v-model='bookNote'>
                     <label :for='num'> {{num}} Stars</label>

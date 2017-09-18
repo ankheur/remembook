@@ -1,3 +1,22 @@
+<i18n>
+{
+  "en": {
+    "biblio": "library",
+    "save": "Save",
+    "version": "About",
+    "langue": "Language",
+    "created": "Created by Ankh using "
+  },
+  "fr": {
+    "biblio": "Bibliothèque",
+    "save": "Sauvegarde",
+    "version": "A propos",
+    "langue": "Langues",
+    "created": "Créé par Ankh avec "
+  }
+}
+</i18n>
+
 <template>
   <v-app id="app">
     <header>
@@ -7,9 +26,17 @@
           <v-toolbar-title>Remembook</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items class="hidden-sm-and-down">
-            <v-btn flat to="/bibliotheque">Bibliothèque</v-btn>
-            <v-btn flat to="/sauvegarde">Sauvegarde</v-btn>
-            <v-btn flat to="/version">Version</v-btn>
+            <v-btn flat to="/bibliotheque">{{ $t('biblio') }}</v-btn>
+            <v-btn flat to="/sauvegarde">{{ $t('save') }}</v-btn>
+            <v-btn flat to="/version">{{ $t('version') }}</v-btn>
+            <!-- <v-menu offset-y>
+              <v-btn flat slot="activator">{{ $t('langue') }}</v-btn>
+              <v-list>
+                <v-list-tile v-for="language in languages" :key="language.name" @click="changeLanguage(language)">
+                  <v-list-tile-title>{{ language.name }}</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu> -->
           </v-toolbar-items>
         </v-toolbar>
       </v-layout>
@@ -19,9 +46,7 @@
     </router-view>
 
     <v-footer>
-        <p>2017 ©<a href='https://github.com/ThunderAnkh/remembook'>Remembook</a>. Créé par Ankh
-          avec <a href='https://vuejs.org/'>VueJS</a> et <a href='https://vuetifyjs.com/'>Vuetify</a>
-        </p>
+         <p>2017 ©<a href='https://github.com/ThunderAnkh/remembook'>Remembook</a>. {{ $t('created') }} <a href='https://vuejs.org/'>VueJS</a> & <a href='https://vuetifyjs.com/'>Vuetify</a></p>
     </v-footer>
   </v-app>
 </template>
@@ -30,6 +55,22 @@
   export default {
       data(){
         return{
+          languages: [
+            {
+              name: "Français",
+              id: 'fr'
+            },
+            {
+              name: "English",
+              id: 'en'
+            }
+          ]
+        }
+      },
+      methods:{
+        changeLanguage(lang){
+          this.$i18n.locale = lang.id
+          console.log(this.$i18n.locale)
         }
       }
   }

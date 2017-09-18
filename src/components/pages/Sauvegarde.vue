@@ -1,20 +1,60 @@
+<i18n>
+{
+  "en": {
+    "saveTitle": "Manage Saves",
+
+    "export": "Export",
+    "exportInfo": "Be careful, your library would be lost if you would delete the local storage of your browser<br> To keep it safe, you can save your library on your computer by download the .json or .csv format (recommanded)",
+    "download": "Download",
+
+    "import": "Import",
+    "importAlert": "This type of file is not allowed. Please upload either .json or .csv files",
+    "importMsg": "You can import .json or .csv files to use as library",
+    "upload": "Upload",
+
+    "resetMsg": "Warning! Deleting your save cannot be undone. You can export it first to keep a copy on your computer",
+    "delete": "Delete",
+    "deleteConfirmMsg": "Please confirm that you want to delete your save ",
+    "deleteCancel": "Cancel",
+    "deleteOK": "Confirm"
+  },
+
+  "fr": {
+    "saveTitle": "Gestion de la sauvegarde",
+
+    "export": "Exporter",
+    "exportInfo": "Attention, votre bibliothèque sera perdue si vous effacez les données de votre navigateur<br> Vous pouvez sauvegarder votre bibliothèque sur votre ordinateur en format .json ou .csv (recommandé)",
+    "download": "Télécharger",
+
+    "import": "Importer",
+    "importAlert": "Ce type de fichier n'est pas autorisé. Veuillez uploader un fichier .json ou .csv",
+    "importMsg": "Vous pouvez importer une bibliothèque en format .json ou .csv",
+    "upload": "Uploader",
+
+    "resetMsg": "Attention ! Supprimer votre sauvegarde est irréversible. Vous pouvez d'abord l'exporter pour en garder une copie sur votre ordinateur",
+    "delete": "Supprimer",
+    "deleteConfirmMsg": "Confirmer la suppression des données",
+    "deleteCancel": "Annuler",
+    "deleteOK": "Confirmer"
+  }
+}
+</i18n>
+
 <template>
   <div>
     <main>
       <v-container fluid>
-        <h2 class='text-xs-center'>Gestion de la sauvegarde</h2>
+        <h2 class='text-xs-center'>{{ $t('saveTitle') }}</h2>
         <v-layout row wrap>
             <v-flex xs12>
                 
                 <v-card>
                     <v-container fluid>
                         <v-card-title>
-                            <h3>Exporter</h3>
+                            <h3>{{ $t('export') }}</h3>
                         </v-card-title>
                         <v-card-text>
-                            <v-alert info value="true">
-                                Attention, votre bibliothèque sera perdue si vous effacez les données de votre navigateur<br>
-                                Vous pouvez sauvegarder votre bibliothèque sur votre ordinateur en format .json ou .csv (recommandé)
+                            <v-alert info value="true" v-html="$t('exportInfo')">
                             </v-alert>
                             <v-layout row wrap>
                                 <v-flex xs2>
@@ -24,7 +64,7 @@
                                     <v-radio label="csv" v-model="dlRadio" value="csv"></v-radio>
                                 </v-flex>
                             </v-layout>
-                            <v-btn @click='download'>Télécharger</v-btn>
+                            <v-btn @click='download'>{{ $t('download') }}</v-btn>
                         </v-card-text>
 
                     </v-container>
@@ -33,15 +73,15 @@
                 <v-card>
                     <v-container fluid>
                         <v-card-title>
-                            <h3>Importer</h3>
+                            <h3>{{ $t('import') }}</h3>
                         </v-card-title>
                         <v-card-text>
                             <v-alert error dismissible v-model="alert">
-                                Ce type de fichier n'est pas autorisé. Veuillez uploader un fichier .json ou .csv
+                                {{ $t('importAlert') }}
                             </v-alert>
-                            <p>Vous pouvez importer une bibliothèque en format .json ou .csv</p>
+                            <p>{{ $t('importMsg') }}</p>
                             <input id="file" type="file">
-                            <v-btn @click='upload'>Uploader</v-btn>
+                            <v-btn @click='upload'>{{ $t('upload') }}</v-btn>
                         </v-card-text>
                     </v-container>
                 </v-card>
@@ -52,8 +92,8 @@
                             <h3>Reset</h3>
                         </v-card-title>
                         <v-card-text>
-                            <p>Attention ! Supprimer votre sauvegarde est irréversible. Vous pouvez d'abord l'exporter pour en garder une copie sur votre ordinateur</p>
-                            <v-btn @click='resetConfirm = true'>Supprimer</v-btn>
+                            <p>{{ $t('resetMsg') }}</p>
+                            <v-btn @click='resetConfirm = true'>{{ $t('delete') }}</v-btn>
                         </v-card-text>
                     </v-container>
                 </v-card>
@@ -62,11 +102,11 @@
 
             <v-dialog v-model="resetConfirm">
                 <v-card>
-                    <v-card-title class="headline text-xs-center">Confirmer la suppression des données</v-card-title>
+                    <v-card-title class="headline text-xs-center">{{ $t('deleteConfirmMsg') }}</v-card-title>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn class="green--text darken-1" flat="flat" @click="resetConfirm = false">Annuler</v-btn>
-                        <v-btn class="green--text darken-1" flat="flat" @click="reset">Confirmer</v-btn>
+                        <v-btn class="green--text darken-1" flat="flat" @click="resetConfirm = false">{{ $t('deleteCancel') }}</v-btn>
+                        <v-btn class="green--text darken-1" flat="flat" @click="reset">{{ $t('deleteOK') }}</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -80,7 +120,7 @@
       :timeout="snackTimeout"
       v-model="snackbar">
       {{ snackText }}
-      <v-btn flat class="pink--text" @click="snackbar = false">Close</v-btn>
+      <v-btn flat class="pink--text" @click="snackbar = false">X</v-btn>
     </v-snackbar>
   </div>
 </template>

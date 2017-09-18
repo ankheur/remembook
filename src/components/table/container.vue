@@ -1,9 +1,40 @@
+<i18n>
+{
+  "en": {
+    "search": "Search",
+    "noEntry": "No entry found",
+
+    "title": "Title",
+    "author": "Author",
+    "edition": "Edition",
+    "year": "Year",
+    "read": "Read",
+    "lend": "Lent",
+    "grade": "Grade"
+    
+  },
+  "fr": {
+    "search": "Rechercher",
+    "noEntry": "Aucune entrée trouvée",
+
+    "title": "Titre",
+    "author": "Auteur/trice",
+    "edition": "Edition",
+    "year": "Année",
+    "read": "Lu",
+    "lend": "Prêté",
+    "grade": "Note"
+    
+  }
+}
+</i18n>
+
 <template>
 <v-card class="grey lighten-5 elevation-0">
     <v-card-title id='searchBar'>
       <v-text-field
         append-icon="search"
-        label="Rechercher"
+        :label="$t('search')"
         single-line
         hide-details
         v-model="search"></v-text-field>
@@ -18,7 +49,7 @@
       v-model="selected"
       selected-key="titre"
       select-all @input='selectionAction'
-      no-data-text="Aucune entrée trouvée"> <!-- hide-actions permet de cacher ou non la pagination-->
+      :no-data-text="$t('noEntry')"> <!-- hide-actions permet de cacher ou non la pagination-->
 
     
     <template slot="items" scope="props">
@@ -75,13 +106,13 @@
                 search: '',
                 selected: [],
                 headers: [
-                { text: 'Titre', align: 'center',value: 'titre'},
-                { text: 'Auteur/trice', value: 'auteur' },
-                { text: 'Edition', value: 'edition' },
-                { text: 'Année', value: 'annee'},
-                { text: 'Lu', align: 'center', value: 'lu'},
-                { text: 'Prêté', align: 'center', value: 'pret'},
-                { text: 'Note', align: 'center', value: 'note' }
+                { text: this.$i18n.t('title'), align: 'center', value: 'titre'},
+                { text: this.$i18n.t('author'), value: 'auteur' },
+                { text: this.$i18n.t('edition'), value: 'edition' },
+                { text: this.$i18n.t('year'), value: 'annee'},
+                { text: this.$i18n.t('read'), align: 'center', value: 'lu'},
+                { text: this.$i18n.t('lend'), align: 'center', value: 'pret'},
+                { text: this.$i18n.t('grade'), align: 'center', value: 'note' }
                 ]
             }
         },

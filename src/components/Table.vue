@@ -1,10 +1,22 @@
+<i18n>
+{
+  "en": {
+    "snackText": "Database updated!",
+    "avertissement": "This app is in its development phase. Please save your library often (Save -> export)"
+  },
+  "fr": {
+    "snackText": "Base de données mise à jour !",
+    "avertissement": "Cette app est en cours de développement. Il est recommandé de sauvegarder vos données régulièrement (Sauvegarde -> exporter)"
+  }
+}
+</i18n>
+
 <template>
   <div id='mainWrapper'>
 
     <v-container fluid>
         <v-alert info dismissible v-model="avertissement">
-          Cette app est en cours de développement. Il est recommandé de sauvegarder vos données régulièrement
-          (menu -> exporter)
+          {{ $t('avertissement') }}
         </v-alert>
     </v-container>
 
@@ -42,8 +54,8 @@
       right
       :timeout="snackTimeout"
       v-model="snackbar">
-      {{ snackText }}
-      <v-btn flat class="pink--text" @click="snackbar = false">Fermer</v-btn>
+      {{ $t('snackText') }}
+      <v-btn flat class="pink--text" @click="snackbar = false">X</v-btn>
     </v-snackbar>
 
   </div>    
@@ -63,7 +75,6 @@ export default {
       displayForm: false,
       books: [],
       snackbar: false,
-      snackText: 'Base de données mise à jour!',
       snackTimeout: 2000,
       avertissement: true,
       scrollBtnActivated: false

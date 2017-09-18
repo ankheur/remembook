@@ -22,7 +22,7 @@ const router = new VueRouter({
 
 const i18n = new VueI18n({
   locale: navigator.language || navigator.userLanguage,
-  fallbackLocale: 'fr'
+  fallbackLocale: 'en'
 })
 
 const vm = new Vue({
