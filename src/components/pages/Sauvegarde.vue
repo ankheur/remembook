@@ -4,7 +4,7 @@
     "saveTitle": "Manage Saves",
 
     "export": "Export",
-    "exportInfo": "Be careful, if you would delete the local storage of your browser your library would be lost<br> To keep it safe, save your library onto your computer by downloading in the .json or .csv format (recommanded)",
+    "exportInfo": "Be careful, if you delete the local storage of your browser your library would be lost<br> To keep it safe, save your library onto your computer by downloading in the .json or .csv format (recommanded)",
     "download": "Download",
 
     "import": "Import",
