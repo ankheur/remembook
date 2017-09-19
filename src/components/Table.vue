@@ -2,7 +2,7 @@
 {
   "en": {
     "snackText": "Database updated!",
-    "avertissement": "This app is in its development phase. Please save your library often (Save -> export)"
+    "avertissement": "This app is in development. Please save your library regularly (Save -> export)"
   },
   "fr": {
     "snackText": "Base de données mise à jour !",
