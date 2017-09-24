@@ -57,11 +57,11 @@
                             <v-alert info value="true" v-html="$t('exportInfo')">
                             </v-alert>
                             <v-layout row wrap>
-                                <v-flex xs2>
-                                    <v-radio label="json" v-model="dlRadio" value="json"></v-radio>
-                                </v-flex>
-                                <v-flex xs2>
-                                    <v-radio label="csv" v-model="dlRadio" value="csv"></v-radio>
+                                <v-flex xs4>
+                                    <v-radio-group v-model="dlRadio" row>
+                                        <v-radio label="json" value="json"></v-radio>
+                                        <v-radio label="csv" v-model="dlRadio" value="csv"></v-radio>
+                                    </v-radio-group>
                                 </v-flex>
                             </v-layout>
                             <v-btn @click='download'>{{ $t('download') }}</v-btn>
