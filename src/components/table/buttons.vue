@@ -1,18 +1,25 @@
+<!--
+    Gère les boutons Edit/Delete/Add
+-->
+
 <template>
     <v-fab-transition>
 
         <v-flex xs1 v-if='addBtn'>
-            <v-fab-transition>
+            <!-- <v-fab-transition> -->
                 <v-btn class="indigo"
                     key="add"
                     fab dark
                     right
-                    @click='openForm'
-                    v-if='!displayForm' fixed>
+                    @click.stop='openForm'
+                    v-if='!displayForm'
+                    fixed>
                 <v-icon>add</v-icon>
-                </v-btn>
+                </v-btn> 
+
+
                 
-                <v-btn class="red"
+                <!-- <v-btn class="red"
                     key="close"
                     fab dark
                     right
@@ -20,7 +27,7 @@
                     v-if='displayForm'>
                 <v-icon>close</v-icon>
                 </v-btn>
-            </v-fab-transition>    
+            </v-fab-transition>     -->
         </v-flex>
 
         <v-flex xs1 v-if='editBtn'>
@@ -59,8 +66,8 @@
                 eventBus.$emit('resetForm')
                 this.$emit('openForm')
                 
-                let scrollingElement = document.scrollingElement || document.documentElement
-                scrollingElement.scrollTop = 0
+                // let scrollingElement = document.scrollingElement || document.documentElement
+                // scrollingElement.scrollTop = 0
             },
             closeForm(){
                 this.$emit('closeForm')
@@ -82,7 +89,6 @@
                 this.editBtn = false
                 this.addBtn = true
 
-                document.body.scrollTop = 0
             },
             deleteClicked(){
                 //Prévient Container qu'on a cliqué sur Supprimer

@@ -24,11 +24,13 @@
     <main>
       <v-container fluid>
         <v-layout row wrap justify-center>
+          
 
+          <v-dialog v-model='displayForm' max-width="600px">
+            <app-form  @addEvent='addBook($event)' @editEvent='editBook($event)' ></app-form>
+          </v-dialog>
+          
           <v-flex xs11>
-            <keep-alive>
-              <app-form v-show='displayForm' @addEvent='addBook($event)' @editEvent='editBook($event)' :displayForm='displayForm'></app-form>
-            </keep-alive>
             <app-container :books='books'></app-container>
           </v-flex>
 
@@ -42,8 +44,8 @@
                 @click='moveTop'>
                 <v-icon>keyboard_arrow_up</v-icon>
             </v-btn>
-          </v-fab-transition> 
-
+          </v-fab-transition>
+            
         </v-layout>
       </v-container>
     </main>

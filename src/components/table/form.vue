@@ -24,77 +24,79 @@
 </i18n>
 
 <template>
-  <v-card class="grey lighten-4 elevation-1" id='form'>
-    <v-card-text>
-      <v-container fluid>
-        <v-layout row align-center>
-            <v-flex xs9>
-                <v-layout row>
+    <v-card class="grey lighten-4 elevation-1" id='form'>
+        <v-card-text>
+        <v-container grid-list-lg>
+            <v-layout wrap>
+                <v-flex xs12>
                     <v-text-field
                     name="input-1"
                     :label="$t('title')"
                     id="bookTitle"
                     v-model='bookTitle'></v-text-field>
-                </v-layout>
-                <!-- <v-card v-if='suggestion'>
-                    <v-list>
-                        <v-list-tile v-for="item in suggestionResponse" :key="item" @click.native='populateInfo(item)'>
-                            {{item.volumeInfo.title|trimTitle}} - {{item.volumeInfo.authors}}
-                        </v-list-tile>
-                    </v-list>
-                </v-card> -->
-                <v-layout row align-center>
-                    <v-flex xs3>
-                        <v-text-field
-                        name="input-2"
-                        :label="$t('author')"
-                        id="bookAuthor"
-                        v-model='bookAuthor'></v-text-field>
-                    </v-flex>
-                    <v-flex xs3>
-                        <v-text-field
-                        name="input-3"
-                        :label="$t('edition')"
-                        id="bookEditor"
-                        v-model='bookEditor'></v-text-field>
-                    </v-flex>
-                    <v-flex xs3>
-                        <v-text-field
-                        name="input-4"
-                        :label="$t('year')"
-                        id="bookYear"
-                        type='number'
-                        maxlength=4
-                        v-model='bookYear'></v-text-field>
-                    </v-flex>
-                    <v-flex xs3>
-                        <v-checkbox :label="$t('read')" v-model="bookRead"></v-checkbox>
-                    </v-flex>
-                </v-layout>
-            </v-flex>
-            <v-flex xs3 >
-                <v-layout row justify-center>
-                    <v-btn @click='formSubmit' :disabled="bookTitle === ''">{{submitTxt}}</v-btn>
-                </v-layout>
-            </v-flex>
-        </v-layout>
-        <v-layout>
-            <v-flex xs3>
-                <v-checkbox :label="$t('lend')" v-model='bookLend'></v-checkbox>
-                <v-text-field v-show='bookLend' name='input-5'  id='bookLender' :label="$t('lendName')" v-model='bookLender'>
-                </v-text-field> 
-            </v-flex>
-            <v-flex xs4 class='review__note'>
-                {{ $t('grade') }}
-                <template v-for='num in [5,4,3,2,1]'>
-                    <input type="radio" :id='num' name="rating" :value='num' v-model='bookNote'>
-                    <label :for='num'> {{num}} Stars</label>
-                </template>
-            </v-flex>
-        </v-layout>
-      </v-container>
-    </v-card-text>
-  </v-card>
+                </v-flex>
+                    <!-- <v-card v-if='suggestion'>
+                        <v-list>
+                            <v-list-tile v-for="item in suggestionResponse" :key="item" @click.native='populateInfo(item)'>
+                                {{item.volumeInfo.title|trimTitle}} - {{item.volumeInfo.authors}}
+                            </v-list-tile>
+                        </v-list>
+                    </v-card> -->
+
+                <v-flex md5>
+                    <v-text-field
+                    name="input-2"
+                    :label="$t('author')"
+                    id="bookAuthor"
+                    v-model='bookAuthor'></v-text-field>
+                </v-flex>
+                <v-flex md5>
+                    <v-text-field
+                    name="input-3"
+                    :label="$t('edition')"
+                    id="bookEditor"
+                    v-model='bookEditor'></v-text-field>
+                </v-flex>
+                <v-flex md2>
+                    <v-text-field
+                    name="input-4"
+                    :label="$t('year')"
+                    id="bookYear"
+                    type='number'
+                    maxlength=4
+                    v-model='bookYear'></v-text-field>
+                </v-flex>
+                
+                <v-flex md4 align-center>
+                    <v-checkbox :label="$t('read')" v-model="bookRead"></v-checkbox>
+                </v-flex>
+
+                <v-flex md4>
+                    <v-checkbox :label="$t('lend')" v-model='bookLend'></v-checkbox> 
+                </v-flex>
+                <v-flex md4 align-center>
+                    <v-text-field v-show='bookLend' name='input-5'  id='bookLender' :label="$t('lendName')" v-model='bookLender'>
+                    </v-text-field>
+                </v-flex>
+            </v-layout>
+            <v-layout align-center>
+                <v-flex md6 class='review__note'>
+                    <label class="subheading mr-3">{{ $t('grade') }}</label>
+                    <template v-for='num in [5,4,3,2,1]'>
+                        <input type="radio" :id='num' name="rating" :value='num' v-model='bookNote'>
+                        <label :for='num'> {{num}} Stars</label>
+                    </template>
+                </v-flex>
+
+                <v-flex xs12 >
+                    <v-layout row justify-center>
+                        <v-btn @click='formSubmit' :disabled="bookTitle === ''">{{submitTxt}}</v-btn>
+                    </v-layout>
+                </v-flex>
+            </v-layout>
+        </v-container>
+        </v-card-text>
+    </v-card>
 </template>
 
 <script>
@@ -228,6 +230,7 @@
     .review__note {
     display: -ms-flexbox;
     display: flex;
+    align-items: center;
     }
     .review__note input {
       display: none; }

@@ -10,7 +10,8 @@
     "year": "Year",
     "read": "Read",
     "lend": "Lent",
-    "grade": "Grade"
+    "grade": "Grade",
+    "bookowned" : "Books owned"
     
   },
   "fr": {
@@ -23,7 +24,8 @@
     "year": "Année",
     "read": "Lu",
     "lend": "Prêté",
-    "grade": "Note"
+    "grade": "Note",
+    "bookowned" : "Livres possédés"
     
   }
 }
@@ -39,7 +41,9 @@
         hide-details
         v-model="search"></v-text-field>
       <v-spacer></v-spacer>
+      {{ $t('bookowned') }} : {{ books.length }} <br>
     </v-card-title>    
+
   <v-data-table
       :headers="headers"
       :items="books"
@@ -47,8 +51,9 @@
       hide-actions  
       class="elevation-0"
       v-model="selected"
-      selected-key="titre"
-      select-all @input='selectionAction'
+      item-key="titre"
+      select-all 
+      @input='selectionAction'
       :no-data-text="$t('noEntry')"> <!-- hide-actions permet de cacher ou non la pagination-->
 
     
