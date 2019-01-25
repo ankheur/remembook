@@ -2,7 +2,7 @@
 
 > Manage your own book collection with this easy to use application made with [Vue](http://vuejs.org/) and [Vuetify](https://vuetifyjs.com/)
 
-You can use it online at https://bibliotheque.kesako.info or install the windows program via https://sourceforge.net/projects/remembook/
+You can use it online at http://remembook.ankhlab.fr/ or install the windows program via https://sourceforge.net/projects/remembook/
 
 ## Build Setup
 
