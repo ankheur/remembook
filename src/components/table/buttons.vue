@@ -30,18 +30,18 @@
             </v-fab-transition>     -->
         </v-flex>
 
-        <v-flex xs1 v-if='editBtn'>
-            <v-btn id='btn-edit' class="green"
+        <v-flex v-if='editBtn'>
+            <v-btn id='btn-edit' color="green"
                 fab dark
                 right
                 @click='editClicked' fixed>
-            <v-icon>edit</v-icon>
+                <v-icon>edit</v-icon>
             </v-btn>
-            <v-btn id='btn-delete' class="red"
+            <v-btn id='btn-delete' color="red"
                 fab dark
                 right
                 @click='deleteClicked' fixed>
-            <v-icon>delete</v-icon>
+                <v-icon>delete</v-icon>
             </v-btn>
         </v-flex>
 
@@ -63,14 +63,14 @@
         },
         methods:{
             openForm(){
-                eventBus.$emit('resetForm')
-                this.$emit('openForm')
+                eventBus.$emit('resetForm') // Signal à form qu'il faut vider le formulaire
+                this.$emit('openForm') // Demande à table d'ouvrir le formulaire (v-model displayForm)
                 
                 // let scrollingElement = document.scrollingElement || document.documentElement
                 // scrollingElement.scrollTop = 0
             },
             closeForm(){
-                this.$emit('closeForm')
+                this.$emit('closeForm') // Demande à table de fermer le formulaire (v-model displayForm)
                 // eventBus.$emit('endSuggestion')
 
                 if(this.selection){
@@ -85,10 +85,6 @@
 
                 //On dit à container que le bouton editer a été cliqué
                 eventBus.$emit('edit')
-
-                this.editBtn = false
-                this.addBtn = true
-
             },
             deleteClicked(){
                 //Prévient Container qu'on a cliqué sur Supprimer
@@ -101,23 +97,28 @@
         },
         created(){
             //Quand Container informe d'un changement dans la selection
-            eventBus.$on('selectionToggle', ($event)=>{
-                this.selection = $event
+            eventBus.$on('selectionToggle', ($selection)=>{
+                this.selection = $selection
 
                 //S'il y a changement de sélection & que le form est ouvert, on le ferme
-                if(this.displayForm){
-                    this.$emit('closeForm')
-                }
+                //if(this.displayForm){
+                    //this.$emit('closeForm')
+                //}
 
-                //Si des entrées sont sélectionnées, on affiche les boutons edit et delete
-                if($event){
+                // Si des entrées sont sélectionnées, on affiche les boutons edit et delete
+                if ($selection == 1) {
                     this.addBtn = false
-                    this.editBtn = true
-
-                //Sinon, on les cache        
-                }else{
+                    this.editBtn = true     
+                }
+                // Sinon, on les cache   
+                else if ($selection > 1) {
+                    this.addBtn = false
+                    this.editBtn = false
+                }
+                else {
                     this.addBtn = true
                     this.editBtn = false
+                    this.deleteBtn = false
                 }
             })
         }
@@ -127,5 +128,13 @@
 <style>
     #btn-delete{
         margin-top: 5em;
+    }
+    
+    .btn--floating .icon {
+        height: initial;
+    }
+
+    .v-btn--floating .v-icon{
+        height: initial;
     }
 </style>
