@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Table from '../views/Table.vue'
-import Version from '../views/Version.vue'
-import Sauvegarde from '../views/Sauvegarde.vue'
 
 Vue.use(VueRouter)
 
@@ -10,32 +7,24 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Table
+    component: () => import(/* webpackChunkName: "about" */ '../views/Table.vue')
   },
   {
     path: '/bibliotheque',
-    component: Table
+    component: () => import(/* webpackChunkName: "about" */ '../views/Table.vue')
   },
   {
     path: '/version',
-    component: Version
+    component: () => import(/* webpackChunkName: "about" */ '../views/Version.vue')
   },
   {
     path:'/sauvegarde',
-    component: Sauvegarde
+    component: () => import(/* webpackChunkName: "about" */ '../views/Sauvegarde.vue')
   },
   {
     path: '*',
-    component: Table
+    component: () => import(/* webpackChunkName: "about" */ '../views/Table.vue')
   }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
 ]
 
 const router = new VueRouter({
