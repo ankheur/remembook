@@ -44,81 +44,85 @@
   <div>
     <main>
       <v-container fluid>
-        <h2 class='text-xs-center'>{{ $t('saveTitle') }}</h2>
+        <h2 class="text-xs-center">{{ $t("saveTitle") }}</h2>
         <v-layout row wrap>
-            <v-flex xs12>
-                
-                <v-card>
-                    <v-container fluid>
-                        <v-card-title>
-                            <h3>{{ $t('export') }}</h3>
-                        </v-card-title>
-                        <v-card-text>
-                            <v-alert info value="true" v-html="$t('exportInfo')">
-                            </v-alert>
-                            <v-layout row wrap>
-                                <v-flex xs4>
-                                    <v-radio-group v-model="dlRadio" row>
-                                        <v-radio label="json" value="json"></v-radio>
-                                        <v-radio label="csv" value="csv"></v-radio>
-                                    </v-radio-group>
-                                </v-flex>
-                            </v-layout>
-                            <v-btn @click='download'>{{ $t('download') }}</v-btn>
-                        </v-card-text>
+          <v-flex xs12>
+            <v-card>
+              <v-container fluid>
+                <v-card-title>
+                  <h3>{{ $t("export") }}</h3>
+                </v-card-title>
+                <v-card-text>
+                  <v-alert info value="true" v-html="$t('exportInfo')">
+                  </v-alert>
+                  <v-layout row wrap>
+                    <v-flex xs4>
+                      <v-radio-group v-model="dlRadio" row>
+                        <v-radio label="json" value="json"></v-radio>
+                        <v-radio label="csv" value="csv"></v-radio>
+                      </v-radio-group>
+                    </v-flex>
+                  </v-layout>
+                  <v-btn @click="download">{{ $t("download") }}</v-btn>
+                </v-card-text>
+              </v-container>
+            </v-card>
 
-                    </v-container>
-                </v-card>
+            <v-card>
+              <v-container fluid>
+                <v-card-title>
+                  <h3>{{ $t("import") }}</h3>
+                </v-card-title>
+                <v-card-text>
+                  <v-alert error dismissible v-model="alert">
+                    {{ $t("importAlert") }}
+                  </v-alert>
+                  <p>{{ $t("importMsg") }}</p>
+                  <input id="file" type="file" />
+                  <v-btn @click="upload">{{ $t("upload") }}</v-btn>
+                </v-card-text>
+              </v-container>
+            </v-card>
 
-                <v-card>
-                    <v-container fluid>
-                        <v-card-title>
-                            <h3>{{ $t('import') }}</h3>
-                        </v-card-title>
-                        <v-card-text>
-                            <v-alert error dismissible v-model="alert">
-                                {{ $t('importAlert') }}
-                            </v-alert>
-                            <p>{{ $t('importMsg') }}</p>
-                            <input id="file" type="file">
-                            <v-btn @click='upload'>{{ $t('upload') }}</v-btn>
-                        </v-card-text>
-                    </v-container>
-                </v-card>
+            <v-card>
+              <v-container fluid>
+                <v-card-title>
+                  <h3>Reset</h3>
+                </v-card-title>
+                <v-card-text>
+                  <p>{{ $t("resetMsg") }}</p>
+                  <v-btn @click="resetConfirm = true">{{ $t("delete") }}</v-btn>
+                </v-card-text>
+              </v-container>
+            </v-card>
+          </v-flex>
 
-                <v-card>
-                    <v-container fluid>
-                        <v-card-title>
-                            <h3>Reset</h3>
-                        </v-card-title>
-                        <v-card-text>
-                            <p>{{ $t('resetMsg') }}</p>
-                            <v-btn @click='resetConfirm = true'>{{ $t('delete') }}</v-btn>
-                        </v-card-text>
-                    </v-container>
-                </v-card>
-            </v-flex>
-
-
-            <v-dialog v-model="resetConfirm" max-width="600px">
-                <v-card>
-                    <v-card-title class="headline text-xs-center">{{ $t('deleteConfirmMsg') }}</v-card-title>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn class="green--text darken-1" flat="flat" @click="resetConfirm = false">{{ $t('deleteCancel') }}</v-btn>
-                        <v-btn class="green--text darken-1" flat="flat" @click="reset">{{ $t('deleteOK') }}</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-dialog>
-
+          <v-dialog v-model="resetConfirm" max-width="600px">
+            <v-card>
+              <v-card-title class="headline text-xs-center">{{
+                $t("deleteConfirmMsg")
+              }}</v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  class="green--text darken-1"
+                  flat="flat"
+                  @click="resetConfirm = false"
+                  >{{ $t("deleteCancel") }}</v-btn
+                >
+                <v-btn
+                  class="green--text darken-1"
+                  flat="flat"
+                  @click="reset"
+                  >{{ $t("deleteOK") }}</v-btn
+                >
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-layout>
       </v-container>
     </main>
-    <v-snackbar
-      bottom
-      right
-      :timeout="snackTimeout"
-      v-model="snackbar">
+    <v-snackbar bottom right :timeout="snackTimeout" v-model="snackbar">
       {{ snackText }}
       <v-btn flat class="pink--text" @click="snackbar = false">X</v-btn>
     </v-snackbar>
@@ -126,144 +130,146 @@
 </template>
 
 <script>
-    import Vue from 'vue'
+import Vue from "vue";
 
-    const FileSaver = require('file-saver')
-    const Papa = require('papaparse')
-    export default {
-        data() {
-            return {
-                dlRadio: 'csv',
-                imgType: '', 
-                snackbar: false,
-                snackText: '',
-                snackTimeout: 2000,
-                alert: false,
-                resetConfirm: false
-            }
-        },
+const FileSaver = require("file-saver");
+const Papa = require("papaparse");
 
-        methods:{
+export default {
+  data() {
+    return {
+      dlRadio: "csv",
+      imgType: "",
+      snackbar: false,
+      snackText: "",
+      snackTimeout: 2000,
+      alert: false,
+      resetConfirm: false,
+    };
+  },
 
-            /* EXPORT */
-            download() {
-                if (this.dlRadio === 'json') {
-                    this.downloadJSON()
-                }
-                else if (this.dlRadio === 'csv') {
-                    this.downloadCSV()
-                }
-            },
+  methods: {
+    /* EXPORT */
+    download() {
+      if (this.dlRadio === "json") {
+        this.downloadJSON();
+      } else if (this.dlRadio === "csv") {
+        this.downloadCSV();
+      }
+    },
 
-            /* -- Fonction d'export - Sauvegarde .json -- */
-            downloadJSON() {
-                let storage = JSON.stringify(localStorage.getItem("books"))
-                let sauvegarde = new Blob([storage], {type: 'application/json'})
-                FileSaver.saveAs(sauvegarde, "remembook.json")
-            },
+    /* -- Fonction d'export - Sauvegarde .json -- */
+    downloadJSON() {
+      let storage = JSON.stringify(localStorage.getItem("books"));
+      let sauvegarde = new Blob([storage], { type: "application/json" });
+      FileSaver.saveAs(sauvegarde, "remembook.json");
+    },
 
-            /* -- Fonction d'export - Sauvegarde .csv -- */
-            downloadCSV() {
-                let storage = JSON.parse(localStorage.getItem("books"))
-                let csv = Papa.unparse(storage.value, {header: true, encoding: "UTF-8", dynamicTyping:true})
-                let sauvegarde = new Blob([csv], {type: 'text/csv;charset=utf-8'})
-                FileSaver.saveAs(sauvegarde, "remembook.csv")
-            },
+    /* -- Fonction d'export - Sauvegarde .csv -- */
+    downloadCSV() {
+      let storage = JSON.parse(localStorage.getItem("books"));
+      let csv = Papa.unparse(storage.value, {
+        header: true,
+        encoding: "UTF-8",
+        dynamicTyping: true,
+      });
+      let sauvegarde = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      FileSaver.saveAs(sauvegarde, "remembook.csv");
+    },
 
+    /* IMPORT */
+    upload() {
+      const fileInput = document.querySelector("#file");
 
-            /* IMPORT */
-            upload() {
-                const fileInput = document.querySelector('#file')
+      // On récupère l'extension du fichier envoyé
+      this.imgType = fileInput.files[0].name.split(".");
+      this.imgType = this.imgType[this.imgType.length - 1];
 
-                // On récupère l'extension du fichier envoyé
-                this.imgType = fileInput.files[0].name.split('.')
-                this.imgType = this.imgType[this.imgType.length - 1]
+      // On exécute la bonne fonction
+      if (this.imgType === "json") {
+        this.uploadJSON(fileInput);
+      } else if (this.imgType === "csv") {
+        this.uploadCSV(fileInput);
+      } else {
+        this.alert = true;
+        return;
+      }
+    },
 
-                // On exécute la bonne fonction
-                if (this.imgType === 'json') {
-                    this.uploadJSON(fileInput)
-                }
-                else if (this.imgType === 'csv') {
-                    this.uploadCSV(fileInput)
-                }
-                else {
-                    this.alert = true
-                    return
-                }
-            },
+    /* -- Fonction d'import json -- */
+    uploadJSON(fileInput) {
+      const reader = new FileReader();
 
-            /* -- Fonction d'import json -- */
-            uploadJSON(fileInput) {
-                const reader = new FileReader()
+      //Dès que le fichier est fini de lire, on stocke le résultat, on le parse et on l'intègre au Local Storage
+      reader.addEventListener("load", () => {
+        let sauvegarde = reader.result;
+        localStorage.setItem("books", JSON.parse(sauvegarde));
+        this.snackbar = true;
+        fileInput.value = "";
+      });
 
-                //Dès que le fichier est fini de lire, on stocke le résultat, on le parse et on l'intègre au Local Storage
-                reader.addEventListener('load', () => {
-                    let sauvegarde = reader.result
-                    localStorage.setItem("books",JSON.parse(sauvegarde))
-                    this.snackbar = true
-                    fileInput.value = ''
-                })
+      //Lecture du fichier
+      reader.readAsText(fileInput.files[0]);
+    },
+    /* -- Fonction d'import csv -- */
+    uploadCSV(fileInput) {
+      const reader = new FileReader();
 
-                //Lecture du fichier
-                reader.readAsText(fileInput.files[0])
+      //Dès que le fichier est fini de lire, on stocke le résultat, on le parse et on l'intègre au Local Storage
+      reader.addEventListener("load", () => {
+        let resultat = reader.result;
+        let intermed = Papa.parse(resultat, {
+          header: true,
+          dynamicTyping: true,
+        });
+        intermed = cleanImport(intermed.data);
+        let sauvegarde = {
+          value: intermed,
+          expire: null,
+        };
+        sauvegarde = JSON.stringify(sauvegarde);
+        localStorage.setItem("books", sauvegarde);
+        this.snackText = "Upload terminé, base de données mise à jour";
+        this.snackbar = true;
+        fileInput.value = "";
+      });
 
-            },
-            /* -- Fonction d'import csv -- */
-            uploadCSV(fileInput) {
-                const reader = new FileReader()
+      //Lecture du fichier
+      reader.readAsText(fileInput.files[0]);
+    },
 
-                //Dès que le fichier est fini de lire, on stocke le résultat, on le parse et on l'intègre au Local Storage
-                reader.addEventListener('load', () => {
-                    let resultat = reader.result
-                    let intermed = Papa.parse(resultat, {header: true, dynamicTyping:true})
-                    intermed = cleanImport(intermed.data)
-                    let sauvegarde = {
-                        value: intermed,
-                        expire: null
-                    }
-                    sauvegarde = JSON.stringify(sauvegarde)
-                    localStorage.setItem("books", sauvegarde)
-                    this.snackText = 'Upload terminé, base de données mise à jour'
-                    this.snackbar = true
-                    fileInput.value = ''
-                })
+    reset() {
+      Vue.ls.remove("books");
 
-                //Lecture du fichier
-                reader.readAsText(fileInput.files[0])
-            },
+      this.resetConfirm = false;
+      this.snackText = "Base de données effacée";
+      this.snackbar = true;
+    },
+  },
+};
 
-            reset() {
-                Vue.ls.remove('books')
-                
-                this.resetConfirm = false
-                this.snackText = 'Base de données effacée'
-                this.snackbar = true
-            }           
-        }
-    }
+function cleanImport(data) {
+  let books = data.filter((book) => {
+    return book.titre != "";
+  });
+  // return books
 
-    function cleanImport(data) {
-        let books = data.filter((book) => {
-            return book.titre != ''
-        })
-        // return books
+  let cleanData = [];
 
-        let cleanData = []
+  books.forEach((book) => {
+    let cleanBook = {
+      titre: book.titre,
+      auteur: book.auteur || "",
+      edition: book.edition || "",
+      annee: book.annee,
+      lu: book.lu || false,
+      note: book.note || 0,
+      pret: book.pret || false,
+      pretPerson: book.pretPerson || "",
+    };
+    cleanData.push(cleanBook);
+  });
 
-        books.forEach((book) => {
-           let cleanBook = {
-                titre: book.titre,
-                auteur: book.auteur || '',
-                edition: book.edition || '',
-                annee: book.annee,
-                lu: book.lu || false,
-                note: book.note || 0,
-                pret: book.pret || false,
-                pretPerson: book.pretPerson || ''
-            }
-            cleanData.push(cleanBook)
-        })
-        
-        return cleanData
-    }
+  return cleanData;
+}
 </script>

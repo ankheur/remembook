@@ -21,16 +21,24 @@
   <v-app id="app">
     <header>
       <v-layout justify-center>
-        <v-toolbar light class='elevation-1'>
-          <img src='http://remembook.ankhlab.fr/favicon.png' height='32px' style="margin-right:15px;">
+        <v-toolbar light class="elevation-1">
+          <img
+            src="http://remembook.ankhlab.fr/favicon.png"
+            height="32px"
+            style="margin-right:15px;"
+          />
           <v-toolbar-title>Remembook</v-toolbar-title>
-          
+
           <v-spacer></v-spacer>
 
-          <v-toolbar-items class="hidden-sm-and-down" align="center" justify="end">
-            <v-btn text to="/bibliotheque">{{ $t('biblio') }}</v-btn>
-            <v-btn text to="/sauvegarde">{{ $t('save') }}</v-btn>
-            <v-btn text to="/version">{{ $t('version') }}</v-btn>
+          <v-toolbar-items
+            class="hidden-sm-and-down"
+            align="center"
+            justify="end"
+          >
+            <v-btn text to="/bibliotheque">{{ $t("biblio") }}</v-btn>
+            <v-btn text to="/sauvegarde">{{ $t("save") }}</v-btn>
+            <v-btn text to="/version">{{ $t("version") }}</v-btn>
             <!-- <v-menu offset-y>
               <v-btn flat slot="activator">{{ $t('langue') }}</v-btn>
               <v-list>
@@ -45,15 +53,28 @@
     </header>
 
     <v-main>
-      <router-view>      
-      </router-view>
+      <router-view> </router-view>
     </v-main>
 
-    <v-footer  padless fixed class='elevation-5'>
+    <v-footer padless fixed class="elevation-5">
       <v-card flat tile width="100%">
         <v-card-text>
-         2021 ©<a href='https://github.com/ankheur/remembook' target="_blank" rel='noopener noreferer'>Remembook</a>. {{ $t('created') }} <a href='https://vuejs.org/' target="_blank" rel='noopener noreferer'>VueJS</a> 
-         & <a href='https://vuetifyjs.com/' target="_blank" rel='noopener noreferer'>Vuetify</a> 
+          2021 ©<a
+            href="https://github.com/ankheur/remembook"
+            target="_blank"
+            rel="noopener noreferer"
+            >Remembook</a
+          >. {{ $t("created") }}
+          <a href="https://vuejs.org/" target="_blank" rel="noopener noreferer"
+            >VueJS</a
+          >
+          &
+          <a
+            href="https://vuetifyjs.com/"
+            target="_blank"
+            rel="noopener noreferer"
+            >Vuetify</a
+          >
         </v-card-text>
       </v-card>
     </v-footer>
@@ -62,18 +83,15 @@
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
 
-  data: () => ({
-  }),
+  data: () => ({}),
 };
 </script>
 
-
 <style>
-
 .toolbar__title {
-    font-size: 3em;
+  font-size: 3em;
 }
 
 h2 {
@@ -105,13 +123,12 @@ h4 {
   align-items: center;
 }
 
-.footer >:last-child {
+.footer > :last-child {
   margin-bottom: 0px;
   margin-left: 50px;
 }
 
-
-@media screen and (min-width: 1200px) { 
+@media screen and (min-width: 1200px) {
   .container.fluid {
     width: 90%;
     margin: auto;
@@ -121,5 +138,4 @@ h4 {
     height: 42px;
   }
 }
-
 </style>
